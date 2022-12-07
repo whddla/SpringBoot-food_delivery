@@ -1,41 +1,56 @@
-{% extends 'layout/layout.html' %}
-{%load static%}
-{%block title%}주문접수{%endblock%}
-{%block content%}
-<link rel="stylesheet" href="{% static 'css/myStore/myStore.css' %}">
-<div class="container">
-    <div class="manage">
-        <div class="top-menu">
-            <button>주문접수</button>
-            <button>매장관리</button>
-        </div>
-        <div style="display: flex;">
-            <div class="side-menu">
-                <button class="active">접수대기</button>
-                <button>처리중</button>
-                <button>완료</button>
-                <button>주문조회</button>
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <title>index</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/store/myStore.css}">
+    <!-- content script -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/layout/header.css}">
+    </th:block>
+    <!-- content script -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/js/addr.js}"></script>
+    </th:block>
+</head>
+<body>
+    <div class="container">
+        <div class="manage">
+            <div class="top-menu">
+                <button>주문접수</button>
+                <button>매장관리</button>
             </div>
-            <div class="waiting">
-                <div class="item">
-                    <div style="width: 70%;display: inline-block;">
-                        <h2>종임불고기, 종임깍두기</h2>
-                        <div>
-                            <span>주문자: </span><strong>이종임</strong>
+            <div style="display: flex;">
+                <div class="side-menu">
+                    <button class="active">접수대기</button>
+                    <button>처리중</button>
+                    <button>완료</button>
+                    <button>주문조회</button>
+                </div>
+                <div class="waiting">
+                    <div class="item">
+                        <div style="width: 70%;display: inline-block;">
+                            <h2>종임불고기, 종임깍두기</h2>
+                            <div>
+                                <span>주문자: </span><strong>이종임</strong>
+                            </div>
+                            <div>
+                                <span>주소: </span><strong>경기 의정부시 오목로 251 308 504</strong>
+                            </div>
+                            <div>
+                                <span>주문일시: </span><strong>2022-12-06:12:10</strong>
+                            </div>
                         </div>
-                        <div>
-                            <span>주소: </span><strong>경기 의정부시 오목로 251 308 504</strong>
+                        <div style="width: 30%;display: inline-block;">
+                            <button style="width: 100%;height: 100%;background: none;">주문확인</button>
                         </div>
-                        <div>
-                            <span>주문일시: </span><strong>2022-12-06:12:10</strong>
-                        </div>
-                    </div>
-                    <div style="width: 30%;display: inline-block;">
-                        <button style="width: 100%;height: 100%;background: none;">주문확인</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-{%endblock%}
+</body>
+</html>

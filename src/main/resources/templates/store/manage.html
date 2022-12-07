@@ -1,38 +1,53 @@
-{% extends 'layout/layout.html' %}
-{%load static%}
-{%block title%}매장관리{%endblock%}
-{%block content%}
-<link rel="stylesheet" href="{% static 'css/myStore/myStore.css' %}">
-<div class="container">
-    <div class="manage">
-        <div class="top-menu">
-            <button>주문접수</button>
-            <button>매장관리</button>
-        </div>
-        <div style="display: flex;">
-            <div class="update">
-                <div>음식 수정 <button>추가</button></div>
-                <div>음식 사진  음식명 : 불고기 가격 : 10,000원 
-                    <button>수정</button>
-                    <button>삭제</button>
-                </div>
-                <div>음식 사진  음식명 : 불고기 가격 : 10,000원 
-                    <button>수정</button>
-                    <button>삭제</button>
-                </div>
-                <div>음식 사진  음식명 : 불고기 가격 : 10,000원 
-                    <button>수정</button>
-                    <button>삭제</button>
-                </div>
-                <div>음식 사진  음식명 : 불고기 가격 : 10,000원 
-                    <button>수정</button>
-                    <button>삭제</button>
-                </div>
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <title>index</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/store/myStore.css}">
+    <!-- content script -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/layout/header.css}">
+    </th:block>
+    <!-- content script -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/js/addr.js}"></script>
+    </th:block>
+</head>
+<body>
+    <div class="container">
+        <div class="manage">
+            <div class="top-menu">
+                <button>주문접수</button>
+                <button>매장관리</button>
             </div>
-            <div>
-                
+            <div style="display: flex;">
+                <div class="update">
+                    <div>음식 수정 <button>추가</button></div>
+                    <div>음식 사진  음식명 : 불고기 가격 : 10,000원
+                        <button>수정</button>
+                        <button>삭제</button>
+                    </div>
+                    <div>음식 사진  음식명 : 불고기 가격 : 10,000원
+                        <button>수정</button>
+                        <button>삭제</button>
+                    </div>
+                    <div>음식 사진  음식명 : 불고기 가격 : 10,000원
+                        <button>수정</button>
+                        <button>삭제</button>
+                    </div>
+                    <div>음식 사진  음식명 : 불고기 가격 : 10,000원
+                        <button>수정</button>
+                        <button>삭제</button>
+                    </div>
+                </div>
+                <div>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
-{%endblock%}
+</body>
+</html>
