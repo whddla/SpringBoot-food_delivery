@@ -1,0 +1,47 @@
+{% extends 'layout/layout.html' %}
+{%load static%}
+{%block title%}주문내역{%endblock%}
+{%block content%}
+<link rel="stylesheet" href="{% static 'css/myOrder.css' %}">
+<div class="container">
+    <div>
+        <div>
+            <h3>나의 총 주문금액</h3>
+            <strong>10,000원</strong>
+            <select name="" id="" style="float: right;">
+        </div>
+            <option value="">없음</option>
+            <option value="">월별</option>
+            <option value="">년도별</option>
+        </select>
+    </div>
+    <div class="list-wrap">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>가게명</td>
+                    <td>주문내역</td>
+                    <td>개수</td>
+                    <td>가격</td>
+                    <td>날짜</td>
+                    <td>리뷰쓰기</td>
+                    <td>가게보기</td>
+                    <td>상세보기</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>연탄불고기</td>
+                    <td>연탄고추장불고기</td>
+                    <td>1개</td>
+                    <td>10,000</td>
+                    <td>2022-12-06</td>
+                    <td><button>리뷰쓰기</button></td>
+                    <td><button>가게보기</button></td>
+                    <td><button>상세보기</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{%endblock%}

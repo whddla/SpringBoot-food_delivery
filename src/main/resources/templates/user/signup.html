@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <title>index</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/user/order.css}">
+    <!-- content script -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/layout/header.css}">
+    </th:block>
+    <!-- content script -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/js/addr.js}"></script>
+    </th:block>
+</head>
+<body>
+    <div class="signup-container">
+        <form action="/member/signupCheck" method="POST" class="account-wrap">
+            <h2 class="account-title">회원가입</h2>
+            <div class="account-content">
+                <ul class="form-list">
+                    <li>
+                        <div class="input-box">
+                            <label class="label" for="loginId">아이디</label>
+                            <input maxlength="20" type="text" name="loginId"/>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-box">
+                            <label class="label" for="loginPw">비밀번호</label>
+                            <input type="password" name="loginPw"/>
+                        </div>
+                        <div class="input-box">
+                            <label class="label" for="loginPwCheck">비밀번호 확인</label>
+                            <input type="password" name="loginPwCheck"/>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-box">
+                            <label class="label" for="email">이메일</label>
+                            <input maxlength="20" type="email" name="email"/>
+                        </div>
+                        <ul class="cautions-dotted">
+                            <li>아이디/비밀번호 찾기에 활용되므로 정확하게 입력해주세요.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="input-box">
+                            <label class="label" for="name">이름</label>
+                            <input type="text" name="name"/>
+                        </div>
+                        <div class="input-box" style="display: flex;">
+                            <label class="label" for="phone">휴대폰 번호</label>
+                            <input type="tel" name="phone"/>
+                            <button class="code-btn" type="button">인증번호</button>
+                        </div>
+                        <div class="input-box" style="display: flex;">
+                            <label class="label" for="code">인증번호</label>
+                            <input type="text" name="code"/>
+                            <button class="code-btn" type="button">인증</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-box">
+                            <label class="label" for="birth">생년월일</label>
+                            <input type="datetime" name="birth"/>
+                        </div>
+                        <ul class="cautions-dotted">
+                            <li>생일을 정확하게 입력해주세요.(예 : 2000-12-31)</li>
+                            <li>만 14세 이상만 회원가입이 가능합니다.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="input-box">
+                            <label class="label" for="address">주소</label>
+                            <input type="text" name="address"/>
+                        </div>
+                    </li>
+                </ul>
+                <div class="check-box"></div>
+            </div>
+            <footer class="btn-group">
+                <button class="bt-large">회원가입</button>
+            </footer>
+        </form>
+    </div>
+</body>
+</html>

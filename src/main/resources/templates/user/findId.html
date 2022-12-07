@@ -1,0 +1,77 @@
+{% extends 'layout/layout.html' %}
+{%load static%}
+{%block title%}아이디/찾기{%endblock%}
+{%block content%}
+<link rel="stylesheet" href="{% static 'css/id.css' %}">
+<div class="login-container">
+    <form action="/member/findId" method="POST" class="account-wrap">
+        {% csrf_token %}
+        <h2 class="account-title">아이디/비밀번호 찾기</h2>
+        <div class="account-content">
+            <div class="tabs">
+                <ul>
+                   <li class="active">
+                        <a href="/member/findId" style="cursor: pointer;">아이디 찾기</a>
+                   </li> 
+                   <li class="">
+                        <a href="/member/findPw" style="border-bottom: 1px solid #ddd; color: #999; cursor: pointer;">비밀번호 찾기</a>
+                   </li> 
+                </ul>
+            </div>
+            <div class="find-content-info">
+                <h3 class="title">아이디를 깜빡하셨나요?</h3>
+                <p class="ment">가입 시 입력하신 정보로 아이디를 찾아보세요.</p>
+                <div class="check-group">
+                    <div class="check-box">
+                        <input id="email" name="radio" value="email" checked="checked" type="radio" onclick="fnRadioName();"> 
+                        <label for="email"> 
+                            <span></span>  이메일로 찾기
+                        </label> 
+                    </div>
+                    <div class="check-box">
+                        <input id="phone" name="radio" value="phone" type="radio" onclick="fnRadioName();"> 
+                        <label for="phone"> 
+                            <span></span> 휴대폰으로 찾기 
+                        </label> 
+                    </div>
+                </div>
+            </div>
+            <ul class="form-list"> 
+                <li>
+                    <div class="input-box">
+                        <label class="label" for="name">이름</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                </li>
+                <li>
+                    <div class="input-box">
+                        <label class="label" for="second"></label>
+                        <input type="text" name="second" id="second">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <footer class="btn-group">
+            <button class="bt-large" type="submit">아이디 찾기</button>
+        </footer>
+    </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("label[for='second']").text("이메일")
+    })
+
+    function fnRadioName(){
+        var second = document.getElementById('second')
+        var listVar = $('input[name=radio]:checked').val();
+        if(listVar == "email"){
+            console.log("hi")
+            $("label[for='second']").text("이메일")
+        }else{
+            console.log("h2")
+            $("label[for='second']").text("휴대폰 번호")
+        }
+    }
+</script>
+{%endblock%}

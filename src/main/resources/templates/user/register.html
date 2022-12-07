@@ -1,0 +1,105 @@
+{% extends 'layout/layout.html' %}
+{%load static%}
+{%block title%}가게등록{%endblock%}
+{%block content%}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<div class="container">
+    <form action="/member/register" method="POST" class="account-wrap">
+        <h2 class="account-title">가게등록</h2>
+        <div class="account-content">
+            <ul class="form-list"> 
+                <li>
+                    <div class="input-box">
+                        <label class="label" for="stoerName">가게명</label>
+                        <input maxlength="20" type="text" name="stoerName"/>
+                    </div>
+                </li>
+                <li>
+                    사업자 등록증<input type="file" name="license"/>
+                    <div class="input-box">
+                        <label class="label" for="account">계좌번호</label>
+                        <input type="password" name="account"/>
+                    </div>
+                    <ul class="cautions-dotted">
+                        <li>계좌번호는 123456-12-123456 형식으로 써주세요</li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="input-box" style="display: flex;">
+                        <label class="label" for="addr">주소</label>
+                        <input style="width: 300px;" name="addr" type="text" id="sample5_address">
+                        <input type="button" style="width: 100px;height: 50px;border: none;align-self: center;margin-right: 9px;border-radius: 10px;padding:0;cursor: pointer" onclick="sample5_execDaumPostcode()" value="주소 검색">
+                    </div>
+                </li>
+                <li>
+                    <select name="" id="" class="input-box">
+                        <option value="">음식점 카테고리 등록</option>
+                        <option value="1">찜,탕</option>
+                        <option value="2">프랜차이즈</option>
+                        <option value="3">한식</option>
+                        <option value="4">일식</option>
+                        <option value="5">아시안</option>
+                        <option value="6">중식</option>
+                        <option value="7">분식</option>
+                        <option value="8">카페,디저트</option>
+                    </select>
+                </li>
+                <li>
+                    <div>
+                        <table style="width: 100%;">
+                            <thead>
+                            <tr>
+                                <td>음식사진</td>
+                                <td>음식명</td>
+                                <td>가격</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="file" style="width:120px;" name="" id=""></td>
+                                    <td><input type="text" style="width:120px;" name="" id=""></td>
+                                    <td><input type="text" style="width:120px;" name="" id=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <footer class="btn-group">
+            <button class="bt-large">가게등록</button>
+        </footer>
+    </form>
+</div>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample5_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = data.address; // 최종 주소 변수
+
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample5_address").value = addr;
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+
+                        var result = results[0]; //첫번째 결과의 값을 활용
+
+                        // 해당 주소에 대한 좌표를 받아서
+                        var coords = new daum.maps.LatLng(result.y, result.x);
+                        // 지도를 보여준다.
+                        mapContainer.style.display = "block";
+                        map.relayout();
+                        // 지도 중심을 변경한다.
+                        map.setCenter(coords);
+                        // 마커를 결과값으로 받은 위치로 옮긴다.
+                        marker.setPosition(coords)
+                    }
+                });
+            }
+        }).open();
+    }
+</script>
+{%endblock%}

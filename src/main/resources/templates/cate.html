@@ -1,0 +1,47 @@
+{% extends 'layout/layout.html' %}
+{%load static%}
+{%block title%}수정중{%endblock%}
+{%block content%}
+<link rel="stylesheet" href="{% static 'css/cate.css' %}">
+<div>
+    <div class="menu-header">
+        <div class="menu-bar">
+            <ul>
+                <li>찜,탕</li>
+                <li>프랜차이즈</li>
+                <li>한식</li>
+                <li>일식</li>
+                <li>아시안</li>
+                <li>중식</li>
+                <li>분식</li>
+                <li>카페,디저트</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="food">
+            <div class="food-item">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">이미지1</td>
+                            <td>이미지2</td>
+                        </tr>
+                        <tr>
+                            <td>이미지3</td>
+                        </tr>
+                        <tr>
+                            <td>귀한족발 의정부민락점</td>
+                            <td>평점 5.0</td>
+                        </tr>
+                        <tr>
+                            <td>최소주문 20,000원</td>
+                            <td>배달팁 2,000원</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

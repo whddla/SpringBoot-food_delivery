@@ -1,0 +1,211 @@
+.container{
+    padding-top: 50px;
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.left-tab{
+    width: 60%;
+}
+
+.right-tab{
+    margin-left: 15px;
+    width: 40%;
+    border-left: 1px solid #d9d9d9;
+    padding-left: 15px;
+}
+
+h3{
+    margin: 0;
+}
+
+/* 가게명 */
+.store{
+    border: 1px solid #d9d9d9;
+}
+
+
+/* 탭 버튼 */
+.active {
+    display: block;
+}
+
+.content {
+    display: none;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-top: none;
+    padding: 30px 16px 0 16px;
+}
+
+.tab_box {
+    width: 100%;
+    margin-top: 30px;
+	display: flex;
+	font-size: 25px;
+}
+
+.tab_box .active {
+    color: #e54c1fbd;
+    border-bottom: 2px solid #ff4e00;
+}
+
+.tabs{
+    width: 100%;
+}
+
+button{
+    border: 1px solid #ddd;
+    background: none;
+}
+
+
+/* 메뉴 탭 css */
+.menu-item{
+    width: 100%;
+    padding: 20px 0;
+}
+
+.menu-item table{
+    width: 100%;
+}
+
+.menu-item table td{
+    padding-left: 33px;
+}
+
+/* 정보 탭 */
+.title{
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid #999;
+    padding: 0 0 7px 20px;
+    margin-bottom: 18px;
+    background-size: 16px;
+}
+
+.info-icon{
+    background: url("https://www.yogiyo.co.kr/mobile/image/ic_owner_notice@3x.png?v=c07d7dfbeb15af2680dacd1ec31b503aa6ba7ce5")no-repeat 0 1px;
+    background-size: 18px;
+}
+
+/* 리뷰 탭 */
+.count {
+    padding: 16px;
+}
+
+.review{
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+}
+
+/* 주문표 */
+.order-title{
+    background-color: beige;
+    text-align: center;
+}
+
+.order-menu ul{
+    max-height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.item-list{
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.item-name{
+    line-height: 18px;
+    padding: 5px 12px 8px 12px;
+}
+
+.pull-left{
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.pull-left span{
+    color: #333;
+    font-size: 14px;
+    display: inline-block;
+    line-height: 18px;
+    padding: 5px;
+}
+
+.text-right{
+    padding-left: 12px;
+    padding-right: 12px;
+    float: right;
+}
+
+/* 결제금액 */
+.pay-view-title{
+    background-color: beige;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pay-money{
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pay-money table{
+    width: 80%;
+    margin: 0 auto;
+    text-align: end;
+}
+
+.pay-money table tr:last-child{
+    color: red;
+}
+
+/* 요청사항 */
+.request{
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.request-title{
+    background-color: beige;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.input-box{
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding:0 20px;
+}
+
+.input-box input{
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+}
+
+/* 결제 */
+
+.pay-btn{
+    width: 100%;
+    height: 50px;
+    background-color: rgb(209, 208, 208);
+    border-radius: 5px;
+}
