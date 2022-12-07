@@ -1,45 +1,60 @@
-{% extends 'layout/layout.html' %}
-{%load static%}
-{%block title%}아이디/찾기{%endblock%}
-{%block content%}
-<link rel="stylesheet" href="{% static 'css/id.css' %}">
-<div class="login-container">
-    <form action="/member/findPw" method="POST" class="account-wrap">
-        {% csrf_token %}
-        <h2 class="account-title">아이디/비밀번호 찾기</h2>
-        <div class="account-content">
-            <div class="tabs">
-                <ul>
-                   <li class="">
-                        <a href="/member/findId" style="border-bottom: 1px solid #ddd;color: #999; cursor: pointer;">아이디 찾기</a>
-                   </li> 
-                   <li class="active">
-                        <a href="/member/findPw" style="cursor: pointer;">비밀번호 찾기</a>
-                   </li> 
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <title>index</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/user/id.css}">
+    <!-- content script -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/layout/header.css}">
+    </th:block>
+    <!-- content script -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/js/addr.js}"></script>
+    </th:block>
+</head>
+<body>
+    <div class="login-container">
+        <form action="/member/findPw" method="POST" class="account-wrap">
+            {% csrf_token %}
+            <h2 class="account-title">아이디/비밀번호 찾기</h2>
+            <div class="account-content">
+                <div class="tabs">
+                    <ul>
+                       <li class="">
+                            <a href="/member/findId" style="border-bottom: 1px solid #ddd;color: #999; cursor: pointer;">아이디 찾기</a>
+                       </li>
+                       <li class="active">
+                            <a href="/member/findPw" style="cursor: pointer;">비밀번호 찾기</a>
+                       </li>
+                    </ul>
+                </div>
+                <div class="find-content-info">
+                    <h3 class="title">비밀번호를 깜빡하셨나요?</h3>
+                    <p class="ment">가입 시 입력하신 정보로 비밀번호를 찾아보세요.</p>
+                </div>
+                <ul class="form-list">
+                    <li>
+                        <div class="input-box">
+                            <label class="label" for="name">아이디</label>
+                            <input type="text" name="name" id="name">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-box">
+                            <label class="label" for="email">이메일</label>
+                            <input type="text" name="email" id="email">
+                        </div>
+                    </li>
                 </ul>
             </div>
-            <div class="find-content-info">
-                <h3 class="title">비밀번호를 깜빡하셨나요?</h3>
-                <p class="ment">가입 시 입력하신 정보로 비밀번호를 찾아보세요.</p>
-            </div>
-            <ul class="form-list"> 
-                <li>
-                    <div class="input-box">
-                        <label class="label" for="name">아이디</label>
-                        <input type="text" name="name" id="name">
-                    </div>
-                </li>
-                <li>
-                    <div class="input-box">
-                        <label class="label" for="email">이메일</label>
-                        <input type="text" name="email" id="email">
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <footer class="btn-group">
-            <button class="bt-large" type="submit">비밀번호 찾기</button>
-        </footer>
-    </form>
-</div>
-{%endblock%}
+            <footer class="btn-group">
+                <button class="bt-large" type="submit">비밀번호 찾기</button>
+            </footer>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,43 +1,58 @@
-{% extends 'layout/layout.html' %}
-{%load static%}
-{%block title%}로그인{%endblock%}
-{%block content%}
-<link rel="stylesheet" href="{% static 'css/login.css' %}">
-<div class="login-container">
-    <form action="." method="POST" class="account-wrap">
-        {% csrf_token %}
-        <h2 class="account-title">로그인</h2>
-        <div class="account-content">
-            <ul class="form-list"> 
-                {% for field in form %}
-                <li>
-                    <div class="input-box">
-                        <label class="label" for="{{field.id_for_label}}">{{field.label}}</label>
-                        <input type="{{field.field.widget.input_type}}" name="{{field.name}}" id="{{field.id_for_label}}">
-                    </div>
-                    <p class="text-valid">{{field.error_messages}}</p>
-                </li>
-                {%if field.errors%}
-                <span style="color: red">{{field.errors}}</span>
-                {%endif%}
-                {%endfor%}
-            </ul>
-            <div class="check-box"></div>
-        </div>
-        <footer class="btn-group">
-            <button class="bt-large" type="submit">로그인</button>
-        </footer>
-    </form>
-    <ul class="nav-text">
-        <li>
-            <a href="/member/signup">회원가입</a>
-        </li>
-        <li>
-            <a href="/member/findId">아이디 찾기</a>
-        </li>
-        <li>
-            <a href="/member/findPw">비밀번호 찾기</a>
-        </li>
-    </ul>
-</div>
-{%endblock%}
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <title>index</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/user/login.css}">
+    <!-- content script -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/layout/header.css}">
+    </th:block>
+    <!-- content script -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/js/addr.js}"></script>
+    </th:block>
+</head>
+<body>
+    <div class="login-container">
+        <form action="." method="POST" class="account-wrap">
+            {% csrf_token %}
+            <h2 class="account-title">로그인</h2>
+            <div class="account-content">
+                <ul class="form-list">
+                    {% for field in form %}
+                    <li>
+                        <div class="input-box">
+                            <label class="label" for="{{field.id_for_label}}">{{field.label}}</label>
+                            <input type="{{field.field.widget.input_type}}" name="{{field.name}}" id="{{field.id_for_label}}">
+                        </div>
+                        <p class="text-valid">{{field.error_messages}}</p>
+                    </li>
+                    {%if field.errors%}
+                    <span style="color: red">{{field.errors}}</span>
+                    {%endif%}
+                    {%endfor%}
+                </ul>
+                <div class="check-box"></div>
+            </div>
+            <footer class="btn-group">
+                <button class="bt-large" type="submit">로그인</button>
+            </footer>
+        </form>
+        <ul class="nav-text">
+            <li>
+                <a href="/member/signup">회원가입</a>
+            </li>
+            <li>
+                <a href="/member/findId">아이디 찾기</a>
+            </li>
+            <li>
+                <a href="/member/findPw">비밀번호 찾기</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
