@@ -1,0 +1,42 @@
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org">
+<!--headerFragment 선언-->
+<div th:fragment="headerFragment">
+    <div style="border-bottom: 1px solid #ddd;">
+        <div class='header-member'>
+            <div class='logo'>
+                <a href="/">
+                    <img src="https://img.etoday.co.kr/pto_db/2019/04/600/20190407100254_1317721_860_392.png" alt=""/>
+                </a>
+            </div>
+            <div class='addr'>
+                <input type="button" value="우리집"><br>
+                <input style="width: 300px;" type="text" id="sample5_address" placeholder="주소">
+                <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
+            </div>
+            <div class='login'>
+                <ul>
+                    <li>
+                        <a href="/member/login">로그인</a>
+                    </li>
+                    <li>
+                        <a href="/member/signup">회원가입</a>
+                    </li>
+                </ul>
+            </div>
+<!--            <div class='login'>-->
+<!--                <ul>-->
+<!--                    <li>-->
+<!--                        <a href="/member/logout">로그아웃</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="/member/myOrder">주문내역</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="/member/register">가게등록</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+        </div>
+    </div>
+</div>
+</html>

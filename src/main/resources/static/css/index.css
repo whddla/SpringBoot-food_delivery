@@ -1,0 +1,64 @@
+.container{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.banner{
+    padding: 30px 0;
+}
+
+.Icon-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.Icon {
+    border-radius: 15px;
+    width: 120px;
+    padding: 46px 0;
+    text-align: center;
+    margin: 15px;
+    background: aqua;
+}
+
+.board-wrap{
+    display: flex;
+    margin: 0 auto;
+    padding-top: 50px;
+    width: 70%;
+    justify-content: space-around;
+}
+
+.admin{
+    width: 100%;
+}
+
+.user{
+    width: 100%;
+}
+
+.admin-board{
+    display: flow-root;
+}
+
+.admin-board>a>span{
+    float: left;
+}
+.admin-board>span{
+    float: right;
+}
+
+.user-board{
+    display: flow-root;
+}
+
+.user-board>a>span{
+    float: left;
+}
+.user-board>span{
+    float: right;
+}
