@@ -3,5 +3,6 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.example.food_delivery.domain.vo.UserVO" alias="userVO"/>
+        <typeAlias type="com.example.food_delivery.domain.vo.AdminVO" alias="adminVO"/>
     </typeAliases>
 </configuration>
