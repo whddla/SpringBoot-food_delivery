@@ -11,6 +11,5 @@ import org.springframework.stereotype.Service;
 @Qualifier("user")
 @Primary
 @Slf4j
-public class StoreServiceImpl implements UserService {
-
+public class StoreServiceImpl implements StoreService {
 }
