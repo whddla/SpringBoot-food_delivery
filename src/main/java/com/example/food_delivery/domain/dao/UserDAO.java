@@ -8,4 +8,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 @RequiredArgsConstructor
 public class UserDAO {
+    private final UserMapper userMapper;
+
+    public UserVO login(String id, String pw){
+        return userMapper.login(id, pw);
+    }
 }

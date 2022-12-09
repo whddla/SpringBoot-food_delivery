@@ -25,4 +25,22 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 public class UserController {
+
+    private final UserService userService;
+
+    //로그인
+    @GetMapping("login")
+    public String loginForm(){
+        return "login";
+    }
+    @PostMapping("login")
+    public String login(String userId, String userPw, HttpServletRequest req){
+        UserVO userVO = userService.login(userId, userPw);
+        HttpSession session = req.getSession();
+        Integer userNum = userVO.getNo();
+        session.setAttribute("userNum",userNum);
+
+        return "redirect:/";
+    }
+
 }

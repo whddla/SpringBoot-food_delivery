@@ -7,5 +7,5 @@ import java.util.Map;
 
 @Service
 public interface UserService {
-
+    public UserVO login(String id, String pw);
 }

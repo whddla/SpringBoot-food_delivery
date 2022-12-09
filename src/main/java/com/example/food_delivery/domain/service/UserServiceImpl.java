@@ -22,5 +22,11 @@ import java.util.Random;
 @Primary
 @Slf4j
 public class UserServiceImpl implements com.example.food_delivery.domain.service.UserService {
+    private final UserDAO userDAO;
+
+    @Override
+    public UserVO login(String id, String pw) {
+        return userDAO.login(id, pw);
+    }
 
 }
