@@ -31,7 +31,7 @@ public class UserController {
     //로그인
     @GetMapping("login")
     public String loginForm(){
-        return "login";
+        return "user/login";
     }
     @PostMapping("login")
     public String login(String userId, String userPw, HttpServletRequest req){
