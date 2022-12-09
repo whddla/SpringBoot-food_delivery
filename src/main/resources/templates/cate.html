@@ -1,8 +1,23 @@
-{% extends 'layout/layout.html' %}
-{%load static%}
-{%block title%}수정중{%endblock%}
-{%block content%}
-<link rel="stylesheet" href="{% static 'css/cate.css' %}">
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <title>index</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <!-- content script -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/layout/header.css}">
+    </th:block>
+    <!-- content script -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/js/addr.js}"></script>
+    </th:block>
+</head>
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+<body>
 <div>
     <div class="menu-header">
         <div class="menu-bar">
@@ -44,4 +59,5 @@
         </div>
     </div>
 </div>
-{%endblock%}
+</body>
+</html>

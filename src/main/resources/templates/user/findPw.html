@@ -16,6 +16,7 @@
         <script th:src="@{/js/addr.js}"></script>
     </th:block>
 </head>
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
 <body>
     <div class="login-container">
         <form action="/member/findPw" method="POST" class="account-wrap">

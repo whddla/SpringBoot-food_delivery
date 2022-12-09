@@ -18,6 +18,7 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script th:src="@{/js/emailOrPhone.js}"></script>
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
 <body>
     <div class="login-container">
         <form action="/member/findId" method="POST" class="account-wrap">
