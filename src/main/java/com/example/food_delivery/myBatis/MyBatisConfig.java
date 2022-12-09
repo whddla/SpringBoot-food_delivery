@@ -41,6 +41,7 @@ public class MyBatisConfig {
         sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:/config/config.xml"));
         try {
             SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBean.getObject();
+            // 카멜표기법
             sqlSessionFactory.getConfiguration().setMapUnderscoreToCamelCase(true);
             return sqlSessionFactory;
         } catch (Exception e) {
