@@ -11,4 +11,5 @@ public class MenuVO {/*회원.*/
     private String food_name;
     private Integer price;
     private Integer ceo_no;
+    private String img;
 }
