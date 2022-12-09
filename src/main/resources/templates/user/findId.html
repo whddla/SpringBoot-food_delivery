@@ -21,17 +21,16 @@
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 <body>
     <div class="login-container">
-        <form action="/member/findId" method="POST" class="account-wrap">
-            {% csrf_token %}
+        <form action="/findId" method="POST" class="account-wrap">
             <h2 class="account-title">아이디/비밀번호 찾기</h2>
             <div class="account-content">
                 <div class="tabs">
                     <ul>
                        <li class="active">
-                            <a href="/member/findId" style="cursor: pointer;">아이디 찾기</a>
+                            <a href="/findId" style="cursor: pointer;">아이디 찾기</a>
                        </li>
                        <li class="">
-                            <a href="/member/findPw" style="border-bottom: 1px solid #ddd; color: #999; cursor: pointer;">비밀번호 찾기</a>
+                            <a href="/findPw" style="border-bottom: 1px solid #ddd; color: #999; cursor: pointer;">비밀번호 찾기</a>
                        </li>
                     </ul>
                 </div>

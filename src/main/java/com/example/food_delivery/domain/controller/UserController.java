@@ -38,14 +38,17 @@ public class UserController {
     public String login(String id, String pw, HttpServletRequest req){
         UserVO userVO = userService.login(id, pw);
         HttpSession session = req.getSession();
+
         Integer userNum = userVO.getNo();
         Integer ceo = userVO.getCeo();
+
         session.setAttribute("userNum",userNum);
         session.setAttribute("ceo",ceo);
 
         return "redirect:/";
     }
 
+    //로그아웃
     @GetMapping("logout")
     public String logout(HttpSession httpSession){
         httpSession.invalidate();
@@ -63,4 +66,31 @@ public class UserController {
         userService.userInsert(userVO);
         return "redirect:/";
     }
+
+    //아이디찾기
+    @GetMapping("findId")
+    public String findIdPage(){
+        return "user/findId";
+    }
+
+    //비밀번호찾기
+    @GetMapping("findPw")
+    public String findPwPage(){
+        return "user/findPw";
+    }
+
+
+    //가게등록
+    @GetMapping("register")
+    public String registerPage(){
+        return "user/register";
+    }
+
+    //주문내역
+    @GetMapping("myOrder")
+    public String myOrderPage(){
+        return "user/myOrder";
+    }
+
+
 }
