@@ -3,14 +3,12 @@
 <mapper namespace="com.example.food_delivery.mapper.UserMapper">
     <!-- 로그인 -->
     <select id="login" resultType="userVO">
-        SELECT
-        *
-        FROM TBL_USER
-        WHERE ID = #{id} AND PW = #{pw}
+        SELECT * FROM TBL_USER WHERE ID = #{id} AND PW = #{pw}
     </select>
+
     <insert id="insert">
-        INSERT INTO TBL_USER
-        (NO, ID,PW, NAME, EMAIL, ADDR, PHONE, CEO)
+        INSERT INTO TBL_USER (NO, ID,PW, NAME, EMAIL, ADDR, PHONE, CEO)
         VALUES(SEQ_USER.NEXTVAL,  #{id}, #{pw},#{name}, #{email}, #{addr}, #{phone},0)
     </insert>
+
 </mapper>

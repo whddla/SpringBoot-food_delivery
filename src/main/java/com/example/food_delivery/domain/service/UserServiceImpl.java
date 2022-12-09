@@ -1,6 +1,7 @@
 package com.example.food_delivery.domain.service;
 
 import com.example.food_delivery.domain.dao.UserDAO;
+import com.example.food_delivery.domain.vo.StoreVO;
 import com.example.food_delivery.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

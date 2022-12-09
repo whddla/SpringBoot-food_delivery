@@ -12,4 +12,5 @@ public class UserContentVO {/*회원.*/
     private String upload_date;
     private String update_date;
     private Integer view_cnt;
+    private Integer user_no;
 }

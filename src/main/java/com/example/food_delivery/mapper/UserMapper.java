@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     //로그인
     public UserVO login(String id, String pw);
+
     //회원가입
     public void insert(UserVO userVO);
+
 }
