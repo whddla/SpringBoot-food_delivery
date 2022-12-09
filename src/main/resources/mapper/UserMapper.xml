@@ -6,6 +6,11 @@
         SELECT
         *
         FROM TBL_USER
-        WHERE id = #{id} AND pw = #{pw}
+        WHERE ID = #{id} AND PW = #{pw}
     </select>
+    <insert id="insert">
+        INSERT INTO TBL_USER
+        (NO, ID,PW, NAME, EMAIL, ADDR, PHONE, CEO)
+        VALUES(SEQ_USER.NEXTVAL,  #{id}, #{pw},#{name}, #{email}, #{addr}, #{phone},0)
+    </insert>
 </mapper>

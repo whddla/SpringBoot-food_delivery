@@ -13,29 +13,30 @@
                 <input style="width: 300px;" type="text" id="sample5_address" placeholder="주소">
                 <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
             </div>
-            <div class='login'>
+            <div th:if="${session.userNum ==null}" class='login'>
                 <ul>
                     <li>
-                        <a href="/member/login">로그인</a>
+                        <a href="/login">로그인</a>
                     </li>
                     <li>
-                        <a href="/member/signup">회원가입</a>
+                        <a href="/signup">회원가입</a>
                     </li>
                 </ul>
             </div>
-<!--            <div class='login'>-->
-<!--                <ul>-->
-<!--                    <li>-->
-<!--                        <a href="/member/logout">로그아웃</a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="/member/myOrder">주문내역</a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="/member/register">가게등록</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
+            <div class='login' th:if="${session.userNum!=null}">
+                <ul>
+                    <li>
+                        <a href="/logout">로그아웃</a>
+                    </li>
+                    <li>
+                        <a href="/myOrder">주문내역</a>
+                    </li>
+                    <li>
+                        <a th:if="${session.ceo ==0}" href="/register">가게등록</a>
+                        <a th:if="${session.ceo ==1}" href="/manage">가게관리</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

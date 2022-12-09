@@ -33,14 +33,34 @@ public class UserController {
     public String loginForm(){
         return "user/login";
     }
+
     @PostMapping("login")
-    public String login(String userId, String userPw, HttpServletRequest req){
-        UserVO userVO = userService.login(userId, userPw);
+    public String login(String id, String pw, HttpServletRequest req){
+        UserVO userVO = userService.login(id, pw);
         HttpSession session = req.getSession();
         Integer userNum = userVO.getNo();
+        Integer ceo = userVO.getCeo();
         session.setAttribute("userNum",userNum);
+        session.setAttribute("ceo",ceo);
 
         return "redirect:/";
     }
 
+    @GetMapping("logout")
+    public String logout(HttpSession httpSession){
+        httpSession.invalidate();
+        return "redirect:/";
+    }
+
+    //회원가입
+    @GetMapping("signup")
+    public String signupPage(){
+        return "user/signup";
+    }
+
+    @PostMapping("signup")
+    public String signup(UserVO userVO){
+        userService.userInsert(userVO);
+        return "redirect:/";
+    }
 }

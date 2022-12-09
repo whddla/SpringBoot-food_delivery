@@ -29,4 +29,9 @@ public class UserServiceImpl implements com.example.food_delivery.domain.service
         return userDAO.login(id, pw);
     }
 
+    @Override
+    public void userInsert(UserVO userVO) {
+        userDAO.userInsert(userVO);
+    }
+
 }

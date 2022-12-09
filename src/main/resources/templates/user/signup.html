@@ -19,30 +19,30 @@
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 <body>
     <div class="signup-container">
-        <form action="/member/signupCheck" method="POST" class="account-wrap">
+        <form action="/signup" method="POST" class="account-wrap">
             <h2 class="account-title">회원가입</h2>
             <div class="account-content">
                 <ul class="form-list">
                     <li>
                         <div class="input-box">
-                            <label class="label" for="loginId">아이디</label>
-                            <input maxlength="20" type="text" name="loginId"/>
+                            <label class="label" for="id">아이디</label>
+                            <input maxlength="20" type="text" name="id" id="id"/>
                         </div>
                     </li>
                     <li>
                         <div class="input-box">
-                            <label class="label" for="loginPw">비밀번호</label>
-                            <input type="password" name="loginPw"/>
+                            <label class="label" for="pw">비밀번호</label>
+                            <input type="password" name="pw" id="pw"/>
                         </div>
                         <div class="input-box">
                             <label class="label" for="loginPwCheck">비밀번호 확인</label>
-                            <input type="password" name="loginPwCheck"/>
+                            <input type="password" name="loginPwCheck" id="loginPwCheck"/>
                         </div>
                     </li>
                     <li>
                         <div class="input-box">
                             <label class="label" for="email">이메일</label>
-                            <input maxlength="20" type="email" name="email"/>
+                            <input maxlength="20" type="email" name="email" id="email"/>
                         </div>
                         <ul class="cautions-dotted">
                             <li>아이디/비밀번호 찾기에 활용되므로 정확하게 입력해주세요.</li>
@@ -51,33 +51,33 @@
                     <li>
                         <div class="input-box">
                             <label class="label" for="name">이름</label>
-                            <input type="text" name="name"/>
+                            <input type="text" name="name" id="name"/>
                         </div>
                         <div class="input-box" style="display: flex;">
                             <label class="label" for="phone">휴대폰 번호</label>
-                            <input type="tel" name="phone"/>
+                            <input type="tel" name="phone" id="phone"/>
                             <button class="code-btn" type="button">인증번호</button>
                         </div>
                         <div class="input-box" style="display: flex;">
                             <label class="label" for="code">인증번호</label>
-                            <input type="text" name="code"/>
+                            <input type="text" name="code" id="code"/>
                             <button class="code-btn" type="button">인증</button>
                         </div>
                     </li>
+<!--                    <li>-->
+<!--                        <div class="input-box">-->
+<!--                            <label class="label" for="birth">생년월일</label>-->
+<!--                            <input type="datetime" name="birth"/>-->
+<!--                        </div>-->
+<!--                        <ul class="cautions-dotted">-->
+<!--                            <li>생일을 정확하게 입력해주세요.(예 : 2000-12-31)</li>-->
+<!--                            <li>만 14세 이상만 회원가입이 가능합니다.</li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
                     <li>
                         <div class="input-box">
-                            <label class="label" for="birth">생년월일</label>
-                            <input type="datetime" name="birth"/>
-                        </div>
-                        <ul class="cautions-dotted">
-                            <li>생일을 정확하게 입력해주세요.(예 : 2000-12-31)</li>
-                            <li>만 14세 이상만 회원가입이 가능합니다.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="input-box">
-                            <label class="label" for="address">주소</label>
-                            <input type="text" name="address"/>
+                            <label class="label" for="addr">주소</label>
+                            <input type="text" name="addr" id="addr"/>
                         </div>
                     </li>
                 </ul>

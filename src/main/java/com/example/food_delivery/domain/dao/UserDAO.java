@@ -13,4 +13,7 @@ public class UserDAO {
     public UserVO login(String id, String pw){
         return userMapper.login(id, pw);
     }
+
+    //회원가입
+    public void userInsert(UserVO userVO){userMapper.insert(userVO);}
 }
