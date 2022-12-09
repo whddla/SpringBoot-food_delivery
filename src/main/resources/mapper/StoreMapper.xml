@@ -4,4 +4,16 @@
     <select id="cate" resultType="StoreVO">
         SELECT * FROM STORE WHERE MENU_NO = #{no}
     </select>
+<!--    <resultMap type="com.example.food_delivery.VO.StoreVO" id="catelist">-->
+<!--        <result property="no" column="NO"/>-->
+<!--        <result property="account" column="ACCOUNT"/>-->
+<!--        <result property="location" column="LOCATION"/>-->
+<!--        <result property="review" column="REVIEW"/>-->
+<!--        <result property="grade" column="GRADE"/>-->
+<!--        <result property="menu_no" column="MENU_NO"/>-->
+<!--        <result property="ceo_no" column="CEO_NO"/>-->
+<!--        <result property="store_name" column="STORE_NAME"/>-->
+<!--        <result property="tip" column="TIP"/>-->
+<!--        <result property="limit_price" column="LIMIT_PRICE"/>-->
+<!--    </resultMap>-->
 </mapper>

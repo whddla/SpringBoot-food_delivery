@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public class StoreDAO {
     private final StoreMapper storeMapper;
 
-    public StoreVO cate(Integer no){
-        return storeMapper.cate(no);
+    public StoreVO cate(Integer no, StoreVO storeVO){
+        return storeMapper.cate(no,storeVO);
     }
 }

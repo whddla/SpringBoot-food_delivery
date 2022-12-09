@@ -2,6 +2,7 @@ package com.example.food_delivery.domain.controller;
 
 import com.example.food_delivery.domain.service.StoreService;
 import com.example.food_delivery.domain.service.UserService;
+import com.example.food_delivery.domain.vo.StoreVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,8 @@ public class StoreController {
 
     //카테고리
     @GetMapping("cate")
-    public String catePage(Model model, Integer no){
-        model.addAttribute("cate",storeService.cate(no));
+    public String catePage(Model model, Integer no, StoreVO storeVO){
+        model.addAttribute("cate",storeService.cate(no,storeVO));
         return "/cate";
     }
 }

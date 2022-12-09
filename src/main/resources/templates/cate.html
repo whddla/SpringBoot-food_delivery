@@ -22,20 +22,20 @@
     <div class="menu-header">
         <div class="menu-bar">
             <ul>
-                <li>찜,탕</li>
-                <li>프랜차이즈</li>
-                <li>한식</li>
-                <li>일식</li>
-                <li>아시안</li>
-                <li>중식</li>
-                <li>분식</li>
-                <li>카페,디저트</li>
+                <li><a th:href="@{/cate(no=1)}">찜,탕</a></li>
+                <li><a th:href="@{/cate(no=2)}">프랜차이즈</a></li>
+                <li><a th:href="@{/cate(no=3)}">한식</a></li>
+                <li><a th:href="@{/cate(no=4)}">일식</a></li>
+                <li><a th:href="@{/cate(no=5)}">아시안</a></li>
+                <li><a th:href="@{/cate(no=6)}">중식</a></li>
+                <li><a th:href="@{/cate(no=7)}">분식</a></li>
+                <li><a th:href="@{/cate(no=8)}">카페,디저트</a></li>
             </ul>
         </div>
     </div>
     <div class="container">
         <div class="food">
-            <div class="food-item">
+            <div class="food-item" th:each="cate:${cate}">
                 <table>
                     <tbody>
                         <tr>
@@ -46,12 +46,12 @@
                             <td>이미지3</td>
                         </tr>
                         <tr>
-                            <td>귀한족발 의정부민락점</td>
-                            <td>평점 5.0</td>
+                            <td th:text="${cate.storeName}"></td>
+                            <td th:text="${cate.review}"></td>
                         </tr>
                         <tr>
-                            <td>최소주문 20,000원</td>
-                            <td>배달팁 2,000원</td>
+                            <td th:text="${cate.limitPrice}"></td>
+                            <td th:text="${cate.tip}"></td>
                         </tr>
                     </tbody>
                 </table>

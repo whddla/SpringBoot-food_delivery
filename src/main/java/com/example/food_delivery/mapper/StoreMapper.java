@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface StoreMapper {
 
     //카테고리
-    public StoreVO cate(Integer no);
+    public StoreVO cate(Integer no ,StoreVO storeVO);
 }

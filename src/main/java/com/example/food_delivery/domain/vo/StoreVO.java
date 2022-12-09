@@ -11,6 +11,9 @@ public class StoreVO {
     private String location;
     private String review;
     private Integer grade;
-    private Integer menu_no;
-    private Integer ceo_no;
+    private Integer menuNo;
+    private Integer ceoNo;
+    private String storeName;
+    private Integer tip;
+    private Integer limitPrice;
 }

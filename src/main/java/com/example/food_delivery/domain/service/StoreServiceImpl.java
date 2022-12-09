@@ -18,7 +18,7 @@ public class StoreServiceImpl implements StoreService {
     private final StoreDAO storeDAO;
 
     @Override
-    public StoreVO cate(Integer no) {
-        return storeDAO.cate(no);
+    public StoreVO cate(Integer no, StoreVO storeVO) {
+        return storeDAO.cate(no,storeVO);
     }
 }
