@@ -2,6 +2,7 @@ package com.example.food_delivery.domain.controller;
 
 import com.example.food_delivery.domain.service.StoreService;
 import com.example.food_delivery.domain.service.UserService;
+import com.example.food_delivery.domain.vo.MenuVO;
 import com.example.food_delivery.domain.vo.StoreVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +19,9 @@ public class StoreController {
 
     //카테고리
     @GetMapping("cate")
-    public String catePage(Model model, Integer no, StoreVO storeVO){
+    public String catePage(Model model, Integer no, StoreVO storeVO, MenuVO menuVO){
         model.addAttribute("cate",storeService.cate(no,storeVO));
+//        model.addAttribute("menu",storeService.menu(menuVO,no));
         return "/cate";
     }
 }

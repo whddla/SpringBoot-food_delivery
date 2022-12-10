@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Data
 public class MenuVO {/*회원.*/
     private Integer no;
-    private Integer menu_cate;
-    private String food_name;
+    private Integer menuCate;
+    private String foodName;
     private Integer price;
-    private Integer ceo_no;
+    private Integer ceoNo;
     private String img;
 }
