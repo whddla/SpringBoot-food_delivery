@@ -17,48 +17,52 @@
     </th:block>
 </head>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
-<script th:src="@{/js/tab.js}"></script>
 <body>
     <div class="container">
         <div class="left-tab">
             <!-- 가게 정보 -->
-            <div class="store">
+            <div class="store" th:each="s:${store}">
                 <table>
                     <tbody>
                         <tr>
-                            <td rowspan="3">가게명</td>
+                            <td rowspan="4"><img class="title-img" th:src="${s.img}" alt=""></td>
+                            <td>가게명</td>
+                            <td th:text="${s.storeName}"></td>
+                        </tr>
+                        <tr>
                             <td>최소주문</td>
-                            <td>12,000원</td>
+                            <td th:text="${s.limitPrice}+'원'"></td>
                         </tr>
                         <tr>
                             <td>배달팁</td>
-                            <td>2,000원</td>
+                            <td th:text="${s.tip}+'원'"></td>
                         </tr>
                         <tr>
                             <td>평점</td>
-                            <td>★★★★★ (5.0)</td>
+                            <td style="color: #ffa600" th:text="'★ '+${s.grade}+''"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <!-- 탭 버튼 -->
             <div class="tab_box">
-                <button class="tabs active" onclick="tabopen(e,'menu-tab')" id="basic_content">메뉴</button>
-                <button class="tabs" onclick="tabopen(e,'info-tab')" >정보</button>
-                <button class="tabs" onclick="tabopen(e,'review-tab')" >리뷰</button>
+                <button class="tabs active" onclick="tabopen(event,'menu-tab')" id="basic_content">메뉴</button>
+                <button class="tabs" onclick="tabopen(event,'info-tab')" >정보</button>
+                <button class="tabs" onclick="tabopen(event,'review-tab')" >리뷰</button>
             </div>
             <!-- 메뉴 탭 -->
             <div id="menu-tab" style="display: block;" class="content">
                 <ul>
-                    <li class="menu-item">
+                    <li class="menu-item" th:each="m:${menu}">
                         <table>
                             <tr>
-                                <td rowspan="2" style="width: 180px;padding:0">사진</td>
-                                <td>음식명</td>
+                                <td rowspan="2" style="width: 50%;"><img style="overflow: hidden;width: 130px;border: 1px solid;border-radius: 10px;" th:src="${m.img}" alt=""></td>
+                                <td th:text="${m.foodName}"></td>
                             </tr>
                             <tr>
-                                <td>가격</td>
+                                <td th:text="${m.price}"></td>
                             </tr>
+                            <button class="plus-btn">담기</button>
                         </table>
                     </li>
                 </ul>
@@ -68,6 +72,12 @@
                 <div style="margin-bottom: 40px;">
                     <div class="title info-icon">사장님알림</div>
                     <div>딜리버리 서비스 메뉴의 가격은 매장 가격과 상이할 수 있습니다.</div>
+                </div>
+                <div style="margin-bottom: 40px;">
+                    <div class="title info-icon">매장위치</div>
+                    <div id="com-addr" th:text="${store.location}">
+                        <div id="map" style="width:100%;height:350px;"></div>
+                    </div>
                 </div>
             </div>
             <!-- 리뷰 탭 -->
@@ -184,4 +194,47 @@
         </div>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script th:src="@{/js/tab.js}"></script>
+<!--<script th:src="@{/js/map.js}"></script>-->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf810bf7f8ae914278124d6d27c95e85&libraries=services"></script>
+<script>
+    var address = document.getElementById('com-addr').innerText;
+    console.log(address);
+    // 지도를 생성합니다
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch(address, function(result, status) {
+
+        // 정상적으로 검색이 완료됐으면
+        if (status === kakao.maps.services.Status.OK) {
+
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+
+            // 인포윈도우로 장소에 대한 설명을 표시합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="width:150px;text-align:center;padding:6px 0;" th:text="${store.storeName}"></div>'
+            });
+            infowindow.open(map, marker);
+
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+        }
+    });
+</script>
 </html>

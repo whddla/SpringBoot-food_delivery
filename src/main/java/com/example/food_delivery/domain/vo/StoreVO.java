@@ -16,4 +16,5 @@ public class StoreVO {
     private String storeName;
     private Integer tip;
     private Integer limitPrice;
+    private String img;
 }

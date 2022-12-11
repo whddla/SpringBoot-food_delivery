@@ -9,4 +9,7 @@ public interface StoreMapper {
 
     //카테고리
     public StoreVO cate(Integer no ,StoreVO storeVO);
+
+    //주문화면
+    public StoreVO order(StoreVO storeVO,Integer no);
 }

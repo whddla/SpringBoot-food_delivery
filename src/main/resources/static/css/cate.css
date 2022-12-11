@@ -63,13 +63,24 @@
 
 .food .food-item {
     position: relative;
+    display: flex;
+    text-align: center;
     border: 1px solid #d9d9d9;
     background: #fff;
+    cursor: pointer;
     padding: 0 8px;
     margin-bottom: 10px;
-    height: 108px;
+    height: 100%;
     box-sizing: border-box;
     border-radius: 10px;
+}
+
+.store-img{
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #cdbbbb;
+    margin: 10px 0;
 }
 
 .food table{

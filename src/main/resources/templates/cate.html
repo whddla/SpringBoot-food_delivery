@@ -35,21 +35,28 @@
     </div>
     <div class="container">
         <div class="food">
-            <div class="food-item" th:each="cate:${cate}">
+            <div class="food-item" th:each="cate:${cate}" th:onclick="'location.href=\'' + @{order(no=${cate.no})} + '\''">
+                <img class="store-img" th:src="${cate.img}">
                 <table>
-                    <tbody>
-                        <tr>
-                            <td rowspan="2"><img style="width: 150px;height: 150px;" src="/img/food/user_2/김치찌개.jpg"></td>
-                        </tr>
-                        <tr>
-                            <td th:text="${cate.storeName}"></td>
-                            <td th:text="${cate.review}"></td>
-                        </tr>
-                        <tr>
-                            <td th:text="${cate.limitPrice}"></td>
-                            <td th:text="${cate.tip}"></td>
-                        </tr>
-                    </tbody>
+                    <tr rowspan="2">
+                        <td colspan="2" th:text="${cate.storeName}"></td>
+                    </tr>
+                    <tr>
+                        <td>최소주문금액</td>
+                        <td th:text="${cate.limitPrice}+'원'"></td>
+                    </tr>
+                    <tr>
+                        <td>배달팁</td>
+                        <td th:text="${cate.tip}+'원'"></td>
+                    </tr>
+                    <tr>
+                        <td>리뷰</td>
+                        <td th:text="${cate.review}+'개'"></td>
+                    </tr>
+                    <tr>
+                        <td>평점</td>
+                        <td style="color: #ffa600" th:text="'★ '+${cate.grade}"></td>
+                    </tr>
                 </table>
             </div>
         </div>

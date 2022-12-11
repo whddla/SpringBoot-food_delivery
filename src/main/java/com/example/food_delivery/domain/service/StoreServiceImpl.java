@@ -3,12 +3,13 @@ package com.example.food_delivery.domain.service;
 import com.example.food_delivery.domain.dao.StoreDAO;
 import com.example.food_delivery.domain.vo.MenuVO;
 import com.example.food_delivery.domain.vo.StoreVO;
-import com.example.food_delivery.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +25,10 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public MenuVO menu(MenuVO menuVO, Integer no) {
+    public List<MenuVO> menu(MenuVO menuVO, Integer no) {
         return storeDAO.menu(menuVO, no);
     }
+
+    @Override
+    public StoreVO order(StoreVO storeVO, Integer no) {return storeDAO.order(storeVO, no);}
 }
