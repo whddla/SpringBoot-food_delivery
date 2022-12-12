@@ -16,4 +16,7 @@ public class UserDAO {
 
     //회원가입
     public void userInsert(UserVO userVO){userMapper.insert(userVO);}
+
+    //유저
+    public UserVO user(Integer no){ return userMapper.user(no);}
 }

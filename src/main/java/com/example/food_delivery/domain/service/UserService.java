@@ -10,4 +10,6 @@ public interface UserService {
     public UserVO login(String id, String pw);
     //회원가입
     public void userInsert(UserVO userVO);
+
+    public UserVO user(Integer no);
 }

@@ -11,4 +11,7 @@
         VALUES(SEQ_USER.NEXTVAL,  #{id}, #{pw},#{name}, #{email}, #{addr}, #{phone},0)
     </insert>
 
+    <select id="user" resultType="userVO">
+        SELECT * FROM TBL_USER WHERE NO = #{no}
+    </select>
 </mapper>

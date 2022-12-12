@@ -26,3 +26,24 @@ function sample5_execDaumPostcode() {
         }
     }).open();
 }
+
+function myHome() {
+    var home = document.getElementById('sample5_address')
+    var no = document.getElementById('userNo').innerText
+    console.log(no)
+    var data = {no: no}
+    $.ajax({
+        type: "get",
+        url: "/myHome",
+        data: data,
+        success: function (result) {
+            home.value = result
+        },error:function(){
+            alert('로그인이 필요합니다.')
+        }
+    });
+}
+
+if(document.getElementById('home').value != null){
+
+}

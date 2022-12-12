@@ -12,4 +12,6 @@ public interface UserMapper {
     //회원가입
     public void insert(UserVO userVO);
 
+    //유저정보
+    public  UserVO user(Integer no);
 }
