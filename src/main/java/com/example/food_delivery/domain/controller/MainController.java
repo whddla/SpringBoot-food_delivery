@@ -47,9 +47,10 @@ public class MainController {
     //우리집 주소
     @GetMapping("myHome")
     @ResponseBody
-    public String addr(Integer no,HttpSession session){
+    public String addr(Integer no,HttpServletRequest request){
         String addr = userService.user(no).getAddr();
-        System.out.println(addr);
+        HttpSession session = request.getSession();
+        session.setAttribute("addr", addr);
         return addr;
     }
 

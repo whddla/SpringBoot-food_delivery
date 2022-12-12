@@ -65,6 +65,7 @@ public class UserController {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();   // 세션 날림
+
         }
 
         return "redirect:/";

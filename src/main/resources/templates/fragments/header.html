@@ -10,7 +10,8 @@
             </div>
             <div class='addr'>
                 <input type="button" id="home" onclick="myHome();" value="우리집">
-                <input style="width: 300px;" type="text" id="sample5_address" placeholder="주소">
+                <input style="width: 300px;background: white;" type="text" id="sample5_address" placeholder="주소" th:if="${session.addr != null}" th:value="${session.addr}" disabled>
+                <input style="width: 300px;background: white;" type="text" id="sample5_address" placeholder="주소" th:if="${session.addr == null}" disabled>
                 <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
             </div>
             <div th:if="${session.loginUser ==null}" class='login'>
