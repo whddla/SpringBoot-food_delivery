@@ -13,27 +13,31 @@
     </th:block>
     <!-- content script -->
     <th:block layout:fragment="script">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script th:src="@{/js/addr.js}"></script>
     </th:block>
 </head>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 <body>
     <div class="login-container">
-        <form action="/login" method="POST" class="account-wrap">
+        <form action="/login" th:action th:object="${loginForm}"  method="POST" class="account-wrap">
             <h2 class="account-title">로그인</h2>
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
+            </div>
             <div class="account-content">
                 <ul class="form-list">
                     <li>
                         <div class="input-box">
                             <label class="label" for="id">아이디</label>
-                            <input type="" name="id" id="id">
+                            <input type="" name="id" id="id" th:field="*{id}">
                         </div>
-                        <p class="text-valid"></p>
+                        <p class="text-valid" th:errors="*{id}"></p>
                         <div class="input-box">
                             <label class="label" for="pw">비밀번호</label>
-                            <input type="" name="pw" id="pw">
+                            <input type="" name="pw" id="pw" th:field="*{pw}" >
                         </div>
-                        <p class="text-valid"></p>
+                        <p class="text-valid" th:errors="*{pw}"></p>
                     </li>
 <!--                    <span style="color: red">{{field.errors}}</span>-->
                 </ul>

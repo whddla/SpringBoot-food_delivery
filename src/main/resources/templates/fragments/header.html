@@ -9,11 +9,11 @@
                 </a>
             </div>
             <div class='addr'>
-                <input type="button" value="우리집"><br>
+                <input type="button" id="home" onclick="myHome();" value="우리집">
                 <input style="width: 300px;" type="text" id="sample5_address" placeholder="주소">
                 <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
             </div>
-            <div th:if="${session.userNum ==null}" class='login'>
+            <div th:if="${session.loginUser ==null}" class='login'>
                 <ul>
                     <li>
                         <a href="/login">로그인</a>
@@ -23,8 +23,11 @@
                     </li>
                 </ul>
             </div>
-            <div class='login' th:if="${session.userNum!=null}">
+            <div class='login' th:if="${session.loginUser!=null}">
                 <ul>
+                    <li>
+                        <div id="userNo" style="display: none;" th:text="${session.loginUser.getNo()}"></div>
+                    </li>
                     <li>
                         <a href="/logout">로그아웃</a>
                     </li>
@@ -32,8 +35,8 @@
                         <a href="/myOrder">주문내역</a>
                     </li>
                     <li>
-                        <a th:if="${session.ceo ==0}" href="/register">가게등록</a>
-                        <a th:if="${session.ceo ==1}" href="/manage">가게관리</a>
+                        <a th:if="${session.loginUser.getCeo() ==0}" href="/register">가게등록</a>
+                        <a th:if="${session.loginUser.getCeo() ==1}" href="/manage">가게관리</a>
                     </li>
                 </ul>
             </div>
