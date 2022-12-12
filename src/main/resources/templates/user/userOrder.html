@@ -38,7 +38,7 @@
                         </tr>
                         <tr>
                             <td>배달팁</td>
-                            <td th:text="${s.tip}+'원'"></td>
+                            <td id="tip" th:text="${s.tip}+'원'"></td>
                         </tr>
                         <tr>
                             <td>평점</td>
@@ -63,9 +63,9 @@
                                 <td th:text="${m.foodName}"></td>
                             </tr>
                             <tr>
-                                <td th:text="${m.price}"></td>
+                                <td th:name="${m.foodName}" th:text="${m.price}"></td>
                             </tr>
-                            <button class="plus-btn">담기</button>
+                            <button class="plus-btn" th:id="${m.foodName}" th:value="${m.foodName}" onclick="select(this.id)">담기</button>
                         </table>
                     </li>
                 </ul>
@@ -109,31 +109,7 @@
                         <div class="order-title"><h3>주문표</h3></div>
                         <div>
                             <!-- 주문표 -->
-                            <ul>
-                                <li class="item-list">
-                                    <div>
-                                        <div class="item-name">김치볶음밥</div>
-                                        <div class="pull-left">
-                                            <a class="delete-btn" href="">
-                                                삭제
-                                                <span>10,000원</span>
-                                            </a>
-                                            <div class="text-right">- 1 +</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item-list">
-                                    <div>
-                                        <div class="item-name">김치볶음밥</div>
-                                        <div class="pull-left">
-                                            <a class="delete-btn" href="">
-                                                삭제
-                                                <span>10,000원</span>
-                                            </a>
-                                            <div class="text-right">- 1 +</div>
-                                        </div>
-                                    </div>
-                                </li>
+                            <ul class="order-wrap">
                             </ul>
                             <!-- 주문표 -->
                         </div>
@@ -147,15 +123,15 @@
                         <table>
                             <tr>
                                 <td>음식</td>
-                                <td>20,000원</td>
+                                <td><input class="pay-inp" type="number" id="pay_food" value="0">원</td>
                             </tr>
                             <tr>
                                 <td>배달비</td>
-                                <td>2,000원</td>
+                                <td><input class="pay-inp" type="number" th:value="${store.tip}">원</td>
                             </tr>
                             <tr>
                                 <td><strong>총 금액</strong></td>
-                                <td><strong>22,000원</strong></td>
+                                <td><strong><input class="pay-inp" type="number" id="total_money" th:value="${store.tip}">원</strong></td>
                             </tr>
                         </table>
                     </div>
@@ -166,7 +142,8 @@
                     </div>
                     <div class="request">
                         <div class="input-box">
-                            주소 <input type="text" disabled value="경기 의정부시 오목로 251" style="background: none;border: none;">
+                            주소 <input type="text" disabled th:if="${session.addr == null}" value="위에 주소를 입력해주세요!!!" style="background: none;border: none;">
+                            <input type="text" disabled th:if="${session.addr != null}" th:value="${session.addr}" style="background: none;border: none;">
                         </div>
                         <div class="input-box">
                             상세주소 <input type="text"style="background: none;outline: none;">
@@ -198,7 +175,8 @@
     </div>
 </body>
 <script th:src="@{/js/tab.js}"></script>
-<!--<script th:src="@{/js/map.js}"></script>-->
+<script th:src="@{/js/map.js}"></script>
+<script th:src="@{/js/selectFood.js}"></script>
 <script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
