@@ -122,6 +122,15 @@ button{
 }
 
 /* 주문표 */
+.xbtn{
+    background: #dddddd80;
+    border-radius: 5px;
+    height: 15px;
+    width: 15px;
+    text-align: center;
+    line-height: 14px;
+}
+
 .order-wrap{
     min-height: 172px;
     height: 100%;

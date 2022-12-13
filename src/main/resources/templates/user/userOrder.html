@@ -123,15 +123,15 @@
                         <table>
                             <tr>
                                 <td>음식</td>
-                                <td><input class="pay-inp" type="number" id="pay_food" value="0">원</td>
+                                <td><input class="pay-inp" type="number" id="pay_food" value="0" disabled>원</td>
                             </tr>
                             <tr>
                                 <td>배달비</td>
-                                <td><input class="pay-inp" type="number" th:value="${store.tip}">원</td>
+                                <td><input class="pay-inp" type="number" th:value="${store.tip}" disabled>원</td>
                             </tr>
                             <tr>
                                 <td><strong>총 금액</strong></td>
-                                <td><strong><input class="pay-inp" type="number" id="total_money" th:value="${store.tip}">원</strong></td>
+                                <td><strong><input class="pay-inp" type="number" id="total_money" th:value="${store.tip}" disabled>원</strong></td>
                             </tr>
                         </table>
                     </div>
