@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <title>주문완료</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/user/order.css}">
+    <!-- content script -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/layout/header.css}">
+    </th:block>
+    <!-- content script -->
+    <th:block layout:fragment="script">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script th:src="@{/js/addr.js}"></script>
+    </th:block>
+</head>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script th:src="@{/js/addr.js}"></script>
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+<body>
+    <div class="container" style="flex-direction: column;">
+        <div style="text-align: center; width: 100%">
+            <h1>주문이 완료되었습니다.</h1>
+            <div>
+                <h2>접수대기 중.</h2>
+                <span>가게에서 주문 확인 중입니다.</span>
+            </div>
+        </div>
+        <div style="text-align: center;margin-top: 50px;">
+            <div><button style="width: 200px;cursor: pointer;margin-bottom: 10px;background: antiquewhite;border: none;" onclick="location.href='/myOrder'">주문 보러가기</button></div>
+            <div><button style="width: 200px;cursor: pointer;margin-bottom: 10px;" onclick="location.href='/'">메인화면 보러가기</button></div>
+        </div>
+    </div>
+</body>
+</html>

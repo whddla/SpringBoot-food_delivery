@@ -4,6 +4,7 @@
     width: 50%;
     min-width: 1000px;
     margin: 0 auto;
+    padding-bottom: 200px;
 }
 
 .left-tab{
@@ -96,6 +97,7 @@ button{
 
 
 /* 정보 탭 */
+
 .title{
     color: #333;
     font-size: 16px;

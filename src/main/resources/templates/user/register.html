@@ -28,15 +28,15 @@
             <ul class="form-list"> 
                 <li>
                     <div class="input-box">
-                        <label class="label" for="stoerName">가게명</label>
-                        <input maxlength="20" type="text" name="stoerName"/>
+                        <label class="label" for="storeName">가게명</label>
+                        <input maxlength="20" type="text" name="storeName" id="storeName"/>
                     </div>
                 </li>
                 <li>
                     사업자 등록증<input type="file" name="license"/>
                     <div class="input-box">
                         <label class="label" for="account">계좌번호</label>
-                        <input type="password" name="account"/>
+                        <input type="password" name="account" id="account"/>
                     </div>
                     <ul class="cautions-dotted">
                         <li>계좌번호는 123456-12-123456 형식으로 써주세요</li>
@@ -45,7 +45,7 @@
                 <li>
                     <div class="input-box" style="display: flex;">
                         <label class="label" for="addr">주소</label>
-                        <input style="width: 300px;" name="addr" type="text" id="sample5_address">
+                        <input style="width: 300px;" name="addr" id="addr" type="text" id="sample5_address">
                         <input type="button" style="width: 100px;height: 50px;border: none;align-self: center;margin-right: 9px;border-radius: 10px;padding:0;cursor: pointer" onclick="sample5_execDaumPostcode()" value="주소 검색">
                     </div>
                 </li>
