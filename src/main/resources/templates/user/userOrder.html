@@ -7,8 +7,6 @@
     <title>index</title>
     <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
     <link rel="stylesheet" th:href="@{/css/user/order.css}">
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf810bf7f8ae914278124d6d27c95e85&libraries=services"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- content script -->
     <th:block layout:fragment="css">
         <link rel="stylesheet" th:href="@{/css/layout/header.css}">
@@ -19,6 +17,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </th:block>
 </head>
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script th:src="@{/js/addr.js}"></script>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 <body>
     <div class="container">
@@ -30,7 +31,7 @@
                         <tr>
                             <td rowspan="4"><img class="title-img" th:src="${s.img}" alt=""></td>
                             <td>가게명</td>
-                            <td th:text="${s.storeName}"></td>
+                            <td id="storeName" th:text="${s.storeName}"></td>
                         </tr>
                         <tr>
                             <td>최소주문</td>
@@ -78,11 +79,13 @@
                 </div>
                 <div style="margin-bottom: 40px;">
                     <div class="title info-icon">매장위치</div>
-                    <div id="com-addr" th:text="${store.location}">
-                        <div id="map" style="width:100%;height:350px;"></div>
-                    </div>
+                    <div id="com-addr" th:text="${store.location}"></div>
                 </div>
             </div>
+            <!-- 지도 -->
+            <div id="map" style="visibility: hidden;width:100%;height:350px;"></div>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf810bf7f8ae914278124d6d27c95e85&libraries=services"></script>
+            <script th:src="@{/js/map.js}"></script>
             <!-- 리뷰 탭 -->
             <div id="review-tab" class="content">
                 <div class="count">
@@ -160,59 +163,74 @@
                             <span>결제방법</span>
                             <select name="" id="" style="width: 100%; height: 30px; margin-top: 5px;">
                                 <option value="none">선택</option>
-                                <option value="1">만나서 현금결제</option>
-                                <option value="2">만나서 카드결제</option>
-                                <option value="3">카드결제</option>
+                                <option value="1">카드결제</option>
+                                <option value="2">만나서 현금결제</option>
+                                <option value="3">만나서 카드결제</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="pay-menu">
-                    <button class="pay-btn">결제하기</button>
-                </div>
             </form>
+            <div class="pay-menu">
+                <button class="pay-btn" onclick="requestPay()">결제하기</button>
+            </div>
         </div>
     </div>
 </body>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <script th:src="@{/js/tab.js}"></script>
-<script th:src="@{/js/map.js}"></script>
 <script th:src="@{/js/selectFood.js}"></script>
-<script>
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-        mapOption = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-        };
+<script th:src="@{/js/pay.js}"></script>
+<script th:inline="javascript">
+    IMP = window.IMP;
+    IMP.init("imp30553073");
 
-    // 지도를 생성합니다
-    var map = new kakao.maps.Map(mapContainer, mapOption);
+    userVO = [[${session.loginUser}]];
+    total_money = document.getElementById("total_money")
 
-    // 주소-좌표 변환 객체를 생성합니다
-    var geocoder = new kakao.maps.services.Geocoder();
+    function requestPay() {
+        // IMP.request_pay(param, callback) 결제창 호출
+        IMP.request_pay({ // param
+            pg: "toss",
+            pay_method: "card",
+            merchant_uid: uuidv4(),
+            name: "배달 결제",
+            amount: parseInt(total_money.value),
+            buyer_email: userVO.email,
+            buyer_name: userVO.name,
+            buyer_tel: userVO.phone,
+            buyer_addr: userVO.addr,
+            buyer_postcode: ""
+        }, function (rsp) { // callback
+            console.log(rsp)
+            if (rsp.success) {
+                let data = {
+                    no: userVO.no,
+                    money: parseInt(total_money.value)
+                }
+                $.ajax({
+                    url: 'order/success',
+                    method: 'post',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function (res) {
+                        alert("결제가 완료되었습니다.");
+                        location.reload();
+                    }, error: function (err) {
+                        alert(err.responseJSON.message());
+                    }
+                })
 
-    // 주소로 좌표를 검색합니다
-    geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+            }
+        });
+    }
 
-        // 정상적으로 검색이 완료됐으면
-        if (status === kakao.maps.services.Status.OK) {
+    function uuidv4() {
+        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+    }
 
-            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-            // 결과값으로 받은 위치를 마커로 표시합니다
-            var marker = new kakao.maps.Marker({
-                map: map,
-                position: coords
-            });
-
-            // 인포윈도우로 장소에 대한 설명을 표시합니다
-            var infowindow = new kakao.maps.InfoWindow({
-                content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-            });
-            infowindow.open(map, marker);
-
-            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-            map.setCenter(coords);
-        }
-    });
 </script>
 </html>
