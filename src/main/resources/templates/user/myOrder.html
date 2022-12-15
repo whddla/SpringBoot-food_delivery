@@ -20,44 +20,30 @@
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 <body>
     <div class="container">
-        <div>
-            <div>
-                <h3>나의 총 주문금액</h3>
-                <strong>10,000원</strong>
+        <div class="item-wrap">
+            <div class="item">
+                <div style="min-width: fit-content;"><img style="width:80%;height:100%;border-radius: 24px;" src="/img/store/user_2/김치찌개.jpg" alt=""></div>
+                <div style="width: 40%;">
+                    <h1>종임가게</h1>
+                    <div style="display: inline-block;">
+                        <strong style="font-size:20px;">주문내역</strong>
+                        <div><span>김치찌개</span><span> (1개)</span><span> 10,000원</span></div>
+                        <div><span>김치찌개</span><span> (1개)</span><span> 10,000원</span></div>
+                    </div>
+                </div>
+                <div style="margin-top: 130px;margin-left: 86px;">
+                    <div style="font-size: 20px;margin-top: -30px;">결제 금액 : <strong>20,000원</strong></div>
+                    <div style="margin-top: 15px">
+                        <button>리뷰쓰기</button>
+                        <button>가게보기</button>
+                    </div>
+                </div>
+                <div class="state-wrap">
+                    <div style="display: inline-block;margin-right: 15px;font-size: 18px;">2022.12.28</div>
+                    <strong style="font-size: 22px">주문대기</strong>
+                    <div class="state"></div>
+                </div>
             </div>
-            <select name="" id="" style="float: right;">
-                <option value="">없음</option>
-                <option value="">월별</option>
-                <option value="">년도별</option>
-            </select>
-        </div>
-        <div class="list-wrap">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <td>가게명</td>
-                        <td>주문내역</td>
-                        <td>개수</td>
-                        <td>가격</td>
-                        <td>날짜</td>
-                        <td>리뷰쓰기</td>
-                        <td>가게보기</td>
-                        <td>상세보기</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>연탄불고기</td>
-                        <td>연탄고추장불고기</td>
-                        <td>1개</td>
-                        <td>10,000</td>
-                        <td>2022-12-06</td>
-                        <td><button>리뷰쓰기</button></td>
-                        <td><button>가게보기</button></td>
-                        <td><button>상세보기</button></td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </body>
