@@ -24,4 +24,29 @@ public class StoreController {
 //        model.addAttribute("menu",storeService.menu(menuVO,no));
         return "/cate";
     }
+
+    @GetMapping("store/manage")
+    public String managePage(){
+        return "store/manage";
+    }
+
+    @GetMapping("store/completion")
+    public String completionPage(){
+        return "store/completion";
+    }
+
+    @GetMapping("store/detail")
+    public String detailPage(){
+        return "store/detail";
+    }
+
+    @GetMapping("store/progress")
+    public String progressPage(){
+        return "store/progress";
+    }
+
+    @GetMapping("store/order")
+    public String orderPage(){
+        return "store/order";
+    }
 }
