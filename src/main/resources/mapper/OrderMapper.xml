@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.food_delivery.mapper.OrderMapper">
+    <insert id="orderHistory" parameterType="java.util.Map">
+        INSERT INTO ORDER_MENU(NO, FOOD_NAME, NUM, PRICE,ORDER_NO)
+        SELECT NO_SEQ.NEXTVAL, A.*
+        FROM (
+        <foreach collection="menu" item="item" separator="UNION ALL ">
+            SELECT #{item.name} AS FOOD_NAME, #{item.num} AS NUM,#{item.money} AS PRICE,#{integer item.no} AS ORDER_NO FROM DUAL
+        </foreach>
+        ) A
+    </insert>
+</mapper>

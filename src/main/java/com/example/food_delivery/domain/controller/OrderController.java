@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //@RestController api 확인시 기존 Conroller 어노테이션 주석하고 이거 활성
@@ -35,13 +38,23 @@ public class OrderController {
     //주문완료
     @GetMapping("order/wait")
     public String waitPage(){
+        System.out.println();
         return "user/wait";
     }
     @PostMapping("order/success")
     @ResponseBody
     public Object orderSuccess(@RequestBody Map<String, Object> map) {
         map.put("no", map.get("no"));
-        map.put("money", map.get("money"));
+        map.put("totalMoney", map.get("money"));
+        map.put("storeName", map.get("storeName"));
+        map.put("userName", map.get("name"));
+        map.put("phone", map.get("phone"));
+        map.put("addr", map.get("addr"));
+        map.put("detailAddr", map.get("detailAddr"));
+        map.put("payment", map.get("payment"));
+        map.put("orderDate", map.get("orderDate"));
+        map.put("menu", map.get("menu"));
+        System.out.println(map.get("menu"));
         return map;
     }
 

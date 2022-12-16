@@ -7,16 +7,14 @@ import org.springframework.stereotype.Component;
 @Data
 public class UserOrderVO {
     private Integer no;
-    private Integer user_no;
+    private Integer userNo;
     private Integer status;
-    private String food_name;
-    private String store_name;
-    private String order_date;
-    private String cnt;
+    private String storeName;
+    private String orderDate;
     private Integer tip;
-    private Integer price;
     private String payment;
-    private String for_ceo;
-    private String for_rider;
+    private String forCeo;
+    private String forRider;
     private String location;
+    private String totalMoney;
 }

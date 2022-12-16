@@ -149,15 +149,15 @@
                             <input type="text" disabled th:if="${session.addr != null}" th:value="${session.addr}" style="background: none;border: none;">
                         </div>
                         <div class="input-box">
-                            상세주소 <input type="text"style="background: none;outline: none;">
+                            상세주소 <input id="detail-addr" type="text"style="background: none;outline: none;">
                         </div>
                         <div class="input-box">
                             <span>요청사항(사장님께)</span>
-                            <input type="text" style="background: none;outline: none;">
+                            <input type="text" style="background: none;outline: none;" id="for_ceo">
                         </div>
                         <div class="input-box">
                             <span>요청사항(배달기사님께)</span>
-                            <input type="text" style="background: none;outline: none;">
+                            <input type="text" style="background: none;outline: none;" id="for_rider">
                         </div>
                         <div class="input-box">
                             <span>결제방법</span>
@@ -182,6 +182,8 @@
 <script th:src="@{/js/selectFood.js}"></script>
 <script th:src="@{/js/pay.js}"></script>
 <script th:inline="javascript">
+    var date = new Date()
+    var now = date.getDate()
     IMP = window.IMP;
     IMP.init("imp30553073");
 
@@ -189,6 +191,18 @@
     total_money = document.getElementById("total_money")
 
     function requestPay() {
+        var food_name = document.getElementsByClassName("item-name")
+        var food_cnt = document.getElementsByName("cnt")
+        var food_money = document.getElementsByClassName("delete-btn")
+        var f = []
+        for(var i = 0; i < food_name.length; i++){
+            f.push(
+                {name:food_name[i].innerText,
+                num:food_cnt[i].value,
+                money:food_money[i].getElementsByTagName("span")[1].innerText}
+            )
+        }
+        console.log(f)
         // IMP.request_pay(param, callback) 결제창 호출
         IMP.request_pay({ // param
             pg: "toss",
@@ -206,7 +220,17 @@
             if (rsp.success) {
                 let data = {
                     no: userVO.no,
-                    money: parseInt(total_money.value)
+                    money: parseInt(total_money.value),
+                    storeName: document.getElementById("storeName").innerText,
+                    state: "주문대기",
+                    name: userVO.name,
+                    phone: userVO.phone,
+                    addr: userVO.addr,
+                    detailAddr: document.getElementById("detail-addr").value,
+                    payment: "카드결제",
+                    orderDate: now,
+                    tip: document.getElementById("tip").innerText,
+                    menu:f
                 }
                 $.ajax({
                     url: 'order/success',
@@ -216,9 +240,9 @@
                     dataType: 'json',
                     success: function (res) {
                         alert("결제가 완료되었습니다.");
-                        location.reload();
+                        location.href='/order/wait';
                     }, error: function (err) {
-                        alert(err.responseJSON.message());
+                        alert(err);
                     }
                 })
 
