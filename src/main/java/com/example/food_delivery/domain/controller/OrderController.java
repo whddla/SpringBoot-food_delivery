@@ -1,7 +1,10 @@
 package com.example.food_delivery.domain.controller;
 
+import com.example.food_delivery.domain.dto.OrderMenuDto;
+import com.example.food_delivery.domain.service.OrderMenuService;
 import com.example.food_delivery.domain.service.StoreService;
 import com.example.food_delivery.domain.vo.MenuVO;
+import com.example.food_delivery.domain.vo.OrderMenuVO;
 import com.example.food_delivery.domain.vo.StoreVO;
 import com.example.food_delivery.domain.vo.UserVO;
 import com.example.food_delivery.web.LoginForm;
@@ -26,6 +29,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class OrderController {
     private final StoreService storeService;
+    private final OrderMenuService orderMenuService;
 
     //주문화면
     @GetMapping("order")
@@ -43,7 +47,7 @@ public class OrderController {
     }
     @PostMapping("order/success")
     @ResponseBody
-    public Object orderSuccess(@RequestBody Map<String, Object> map) {
+    public Object orderSuccess(@RequestBody Map<String, Object> map, OrderMenuVO orderMenuVO) {
         map.put("no", map.get("no"));
         map.put("totalMoney", map.get("money"));
         map.put("storeName", map.get("storeName"));
@@ -55,6 +59,7 @@ public class OrderController {
         map.put("orderDate", map.get("orderDate"));
         map.put("menu", map.get("menu"));
         System.out.println(map.get("menu"));
+        orderMenuService.orderHistory(orderMenuVO);
         return map;
     }
 

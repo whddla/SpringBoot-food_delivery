@@ -1,15 +1,17 @@
 package com.example.food_delivery.mapper;
 
 
+import com.example.food_delivery.domain.vo.MenuVO;
 import com.example.food_delivery.domain.vo.OrderMenuVO;
+import com.example.food_delivery.domain.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.core.annotation.Order;
+
+import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface OrderMapper {
 
-    //카테고리
-    public StoreVO cate(Integer no ,StoreVO storeVO);
-
-    //주문화면
-    public StoreVO order(StoreVO storeVO,Integer no);
+    public void orderHistory(OrderMenuVO orderMenuVO);
 }

@@ -13,7 +13,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Qualifier("user")
 @Primary
 @Slf4j
 public class StoreServiceImpl implements StoreService {

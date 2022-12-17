@@ -197,9 +197,9 @@
         var f = []
         for(var i = 0; i < food_name.length; i++){
             f.push(
-                {name:food_name[i].innerText,
+                {foodName:food_name[i].innerText,
                 num:food_cnt[i].value,
-                money:food_money[i].getElementsByTagName("span")[1].innerText}
+                price:food_money[i].getElementsByTagName("span")[1].innerText}
             )
         }
         console.log(f)
