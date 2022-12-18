@@ -24,4 +24,7 @@ public class OrderMenuServiceImpl implements OrderMenuService {
     public void orderHistory(HashMap<String, Object> params) {
         orderDAO.orderHistory(params);
     }
+    public void orderHistory2(HashMap<String, Object> params) {
+        orderDAO.orderHistory2(params);
+    }
 }

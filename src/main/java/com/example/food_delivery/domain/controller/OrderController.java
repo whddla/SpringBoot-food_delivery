@@ -47,9 +47,12 @@ public class OrderController {
         map.put("no", params.get("no"));
         map.put("totalMoney", params.get("money"));
         map.put("storeName", params.get("storeName"));
-        map.put("userName", params.get("name"));
         map.put("phone", params.get("phone"));
+        map.put("tip", params.get("tip"));
         map.put("addr", params.get("addr"));
+        map.put("status", params.get("state"));
+        map.put("forCeo", params.get("forCeo"));
+        map.put("forRider", params.get("forRider"));
         map.put("detailAddr", params.get("detailAddr"));
         map.put("payment", params.get("payment"));
         map.put("orderDate", params.get("orderDate"));
@@ -57,7 +60,8 @@ public class OrderController {
         String ran = RandomStringUtils.random(6,true, true);
         map.put("orderNo", ran);
         System.out.println(params.get("menu"));
-        orderMenuService.orderHistory(map);
+//        orderMenuService.orderHistory(map);
+        orderMenuService.orderHistory2(map);
         return map;
     }
 

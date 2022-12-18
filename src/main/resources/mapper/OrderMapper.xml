@@ -11,6 +11,7 @@
         ) A
     </insert>
     <insert id="orderHistory2" parameterType="java.util.HashMap">
-    INSERT INTO ORDER_MENU(NO, FOOD_NAME, NUM, PRICE,ORDER_NO)
+    INSERT INTO TBL_USER_ORDER(NO,USER_NO,STATUS,STORE_NAME,ORDER_DATE, TIP,PAYMENT, FOR_CEO,FOR_RIDER,LOCATION,PHONE,TOTAL_MONEY,ORDER_NO)
+    VALUES (SEQ_ORDER.NEXTVAL,#{no},#{status},#{storeName},#{orderDate},#{tip},#{payment},#{forCeo},#{forRider},#{addr},#{phone},#{totalMoney},#{orderNo})
     </insert>
 </mapper>

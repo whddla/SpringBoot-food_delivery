@@ -10,4 +10,5 @@ import java.util.Map;
 @Service
 public interface OrderMenuService {
     void orderHistory(HashMap<String, Object> params);
+    void orderHistory2(HashMap<String, Object> params);
 }

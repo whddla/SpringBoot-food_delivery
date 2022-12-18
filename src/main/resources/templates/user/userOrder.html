@@ -39,7 +39,7 @@
                         </tr>
                         <tr>
                             <td>배달팁</td>
-                            <td id="tip" th:text="${s.tip}+'원'"></td>
+                            <td ><input style="border: none;width: 47px;" disabled id="tip" type="text" th:value="${s.tip}">원</td>
                         </tr>
                         <tr>
                             <td>평점</td>
@@ -182,11 +182,10 @@
 <script th:src="@{/js/selectFood.js}"></script>
 <script th:src="@{/js/pay.js}"></script>
 <script th:inline="javascript">
-    var date = new Date()
-    var now = date.getDate()
+    var dt = new Date();
+    var str = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate();
     IMP = window.IMP;
     IMP.init("imp30553073");
-
     userVO = [[${session.loginUser}]];
     total_money = document.getElementById("total_money")
 
@@ -220,16 +219,18 @@
             if (rsp.success) {
                 let data = {
                     no: userVO.no,
-                    money: parseInt(total_money.value),
+                    money: total_money.value,
                     storeName: document.getElementById("storeName").innerText,
+                    forCeo: document.getElementById("for_ceo").value,
+                    forRider: document.getElementById("for_rider").value,
                     state: "주문대기",
                     name: userVO.name,
                     phone: userVO.phone,
                     addr: userVO.addr,
                     detailAddr: document.getElementById("detail-addr").value,
                     payment: "카드결제",
-                    orderDate: now,
-                    tip: document.getElementById("tip").innerText,
+                    orderDate: str,
+                    tip: document.getElementById("tip").value,
                     menu:f
                 }
                 $.ajax({
