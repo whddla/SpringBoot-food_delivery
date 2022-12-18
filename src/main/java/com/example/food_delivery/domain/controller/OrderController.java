@@ -1,16 +1,13 @@
 package com.example.food_delivery.domain.controller;
 
-import com.example.food_delivery.domain.dto.OrderMenuDto;
 import com.example.food_delivery.domain.service.OrderMenuService;
 import com.example.food_delivery.domain.service.StoreService;
 import com.example.food_delivery.domain.vo.MenuVO;
 import com.example.food_delivery.domain.vo.OrderMenuVO;
 import com.example.food_delivery.domain.vo.StoreVO;
-import com.example.food_delivery.domain.vo.UserVO;
-import com.example.food_delivery.web.LoginForm;
-import com.example.food_delivery.web.SessionConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -18,10 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.*;
 
 //@RestController api 확인시 기존 Conroller 어노테이션 주석하고 이거 활성
 @Controller
@@ -47,19 +42,22 @@ public class OrderController {
     }
     @PostMapping("order/success")
     @ResponseBody
-    public Object orderSuccess(@RequestBody Map<String, Object> map, OrderMenuVO orderMenuVO) {
-        map.put("no", map.get("no"));
-        map.put("totalMoney", map.get("money"));
-        map.put("storeName", map.get("storeName"));
-        map.put("userName", map.get("name"));
-        map.put("phone", map.get("phone"));
-        map.put("addr", map.get("addr"));
-        map.put("detailAddr", map.get("detailAddr"));
-        map.put("payment", map.get("payment"));
-        map.put("orderDate", map.get("orderDate"));
-        map.put("menu", map.get("menu"));
-        System.out.println(map.get("menu"));
-        orderMenuService.orderHistory(orderMenuVO);
+    public Object orderSuccess(@RequestBody HashMap<String, Object> params, OrderMenuVO orderMenuVO) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("no", params.get("no"));
+        map.put("totalMoney", params.get("money"));
+        map.put("storeName", params.get("storeName"));
+        map.put("userName", params.get("name"));
+        map.put("phone", params.get("phone"));
+        map.put("addr", params.get("addr"));
+        map.put("detailAddr", params.get("detailAddr"));
+        map.put("payment", params.get("payment"));
+        map.put("orderDate", params.get("orderDate"));
+        map.put("menu", params.get("menu"));
+        String ran = RandomStringUtils.random(6,true, true);
+        map.put("orderNo", ran);
+        System.out.println(params.get("menu"));
+        orderMenuService.orderHistory(map);
         return map;
     }
 

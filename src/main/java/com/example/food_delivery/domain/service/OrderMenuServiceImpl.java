@@ -10,7 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -18,9 +20,8 @@ import java.util.List;
 @Slf4j
 public class OrderMenuServiceImpl implements OrderMenuService {
     private final OrderDAO orderDAO;
-
     @Override
-    public void orderHistory(OrderMenuVO orderMenuVO) {
-        orderDAO.insertOrder(orderMenuVO);
+    public void orderHistory(HashMap<String, Object> params) {
+        orderDAO.orderHistory(params);
     }
 }

@@ -6,6 +6,7 @@ import com.example.food_delivery.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,13 @@ import java.util.Map;
 public class OrderDAO {
     private final OrderMapper orderMapper;
 
-    //회원가입
-    public void insertOrder(OrderMenuVO orderMenuVO){orderMapper.orderHistory(orderMenuVO);}
+    public void orderHistory(HashMap<String, Object> params) {
+        orderMapper.orderHistory(params);
+    }
+
+    public void orderHistory2(HashMap<String, Object> params) {
+        orderMapper.orderHistory2(params);
+    }
+
     }
 
