@@ -60,7 +60,7 @@ public class OrderController {
         String ran = RandomStringUtils.random(6,true, true);
         map.put("orderNo", ran);
         System.out.println(params.get("menu"));
-//        orderMenuService.orderHistory(map);
+        orderMenuService.orderHistory(map);
         orderMenuService.orderHistory2(map);
         return map;
     }

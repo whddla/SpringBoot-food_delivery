@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 public class UserOrderVO {
     private Integer no;
     private Integer userNo;
-    private Integer status;
+    private String orderNo;
+    private String status;
     private String storeName;
     private String orderDate;
-    private Integer tip;
+    private String tip;
     private String payment;
     private String forCeo;
     private String forRider;

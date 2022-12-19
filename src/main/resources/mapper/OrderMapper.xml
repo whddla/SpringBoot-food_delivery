@@ -2,16 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.food_delivery.mapper.OrderMapper">
     <insert id="orderHistory" parameterType="java.util.HashMap">
-        INSERT INTO ORDER_MENU(NO, FOOD_NAME, NUM, PRICE,ORDER_NO)
+        INSERT INTO ORDER_MENU(NO, FOOD_NAME, NUM, PRICE,ORDER_NO,USER_NO)
         SELECT SEQ_NO.NEXTVAL, A.*
         FROM (
         <foreach collection="menu" item="item" separator="UNION ALL ">
-            SELECT #{item.foodName} AS FOOD_NAME, #{item.num} AS NUM,#{item.price} AS PRICE,#{orderNo} AS ORDER_NO FROM DUAL
+            SELECT #{item.foodName} AS FOOD_NAME, #{item.num} AS NUM,#{item.price} AS PRICE,
+            #{orderNo} AS ORDER_NO,#{item.userNo} AS USER_NO FROM DUAL
         </foreach>
         ) A
     </insert>
     <insert id="orderHistory2" parameterType="java.util.HashMap">
-    INSERT INTO TBL_USER_ORDER(NO,USER_NO,STATUS,STORE_NAME,ORDER_DATE, TIP,PAYMENT, FOR_CEO,FOR_RIDER,LOCATION,PHONE,TOTAL_MONEY,ORDER_NO)
-    VALUES (SEQ_ORDER.NEXTVAL,#{no},#{status},#{storeName},#{orderDate},#{tip},#{payment},#{forCeo},#{forRider},#{addr},#{phone},#{totalMoney},#{orderNo})
+        INSERT INTO TBL_USER_ORDER(NO,USER_NO,STATUS,STORE_NAME,ORDER_DATE, TIP,PAYMENT, FOR_CEO,FOR_RIDER,LOCATION,PHONE,TOTAL_MONEY,ORDER_NO)
+        VALUES (SEQ_ORDER.NEXTVAL,#{no},#{status},#{storeName},#{orderDate},#{tip},#{payment},#{forCeo},#{forRider},#{addr},#{phone},#{totalMoney},#{orderNo})
     </insert>
+    <select id="orderAllList" resultType="userOrderVO">
+        SELECT * FROM TBL_USER_ORDER WHERE USER_NO = #{no}
+    </select>
+    <select id="menuAllList" resultType="orderMenuVO">
+        SELECT * FROM ORDER_MENU WHERE USER_NO = #{no}
+    </select>
 </mapper>

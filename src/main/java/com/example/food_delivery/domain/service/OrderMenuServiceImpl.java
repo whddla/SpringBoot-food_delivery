@@ -4,6 +4,7 @@ import com.example.food_delivery.domain.dao.OrderDAO;
 import com.example.food_delivery.domain.dao.StoreDAO;
 import com.example.food_delivery.domain.vo.OrderMenuVO;
 import com.example.food_delivery.domain.vo.StoreVO;
+import com.example.food_delivery.domain.vo.UserOrderVO;
 import com.example.food_delivery.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,12 @@ public class OrderMenuServiceImpl implements OrderMenuService {
     public void orderHistory(HashMap<String, Object> params) {
         orderDAO.orderHistory(params);
     }
+    @Override
     public void orderHistory2(HashMap<String, Object> params) {
         orderDAO.orderHistory2(params);
     }
+    @Override
+    public List<UserOrderVO> orderAllList(UserOrderVO userOrderVO, Integer no) { return orderDAO.orderAllLIst(userOrderVO, no); }
+    @Override
+    public List<OrderMenuVO> menuAllList(OrderMenuVO orderMenuVO, Integer no) { return orderDAO.menuAllLIst(orderMenuVO, no); }
 }

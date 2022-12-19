@@ -1,5 +1,6 @@
 package com.example.food_delivery.domain.controller;
 
+import com.example.food_delivery.domain.service.OrderMenuService;
 import com.example.food_delivery.domain.service.UserService;
 import com.example.food_delivery.domain.vo.*;
 import com.example.food_delivery.web.LoginForm;
@@ -28,6 +29,7 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final OrderMenuService orderMenuService;
 
     //로그인
     @GetMapping("/login")
@@ -104,7 +106,14 @@ public class UserController {
 
     //주문내역
     @GetMapping("myOrder")
-    public String myOrderPage(){
+    public String myOrderPage(HttpServletRequest request,Model model,OrderMenuVO orderMenuVO, UserOrderVO userOrderVO){
+        HttpSession session = request.getSession();
+        UserVO user = (UserVO) session.getAttribute(SessionConstants.LOGIN_USER);
+        System.out.println(session);
+        System.out.println(user);
+        Integer no= user.getNo();
+        model.addAttribute("order",orderMenuService.orderAllList(userOrderVO ,no));
+        model.addAttribute("menu",orderMenuService.menuAllList(orderMenuVO ,no));
         return "user/myOrder";
     }
 

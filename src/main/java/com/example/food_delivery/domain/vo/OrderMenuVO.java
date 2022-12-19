@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 public class OrderMenuVO {
     private Integer no;
     private String foodName;
-    private Integer num;
-    private Integer price;
-    private Integer orderNo;
+    private String num;
+    private String price;
+    private String orderNo;
+    private Integer userNo;
+
 }

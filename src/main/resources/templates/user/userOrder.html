@@ -198,7 +198,8 @@
             f.push(
                 {foodName:food_name[i].innerText,
                 num:food_cnt[i].value,
-                price:food_money[i].getElementsByTagName("span")[1].innerText}
+                price:food_money[i].getElementsByTagName("span")[1].innerText,
+                userNo: userVO.no}
             )
         }
         console.log(f)

@@ -1,5 +1,6 @@
 package com.example.food_delivery.domain.dao;
 
+import com.example.food_delivery.domain.vo.UserOrderVO;
 import com.example.food_delivery.domain.vo.UserVO;
 import com.example.food_delivery.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -19,4 +20,6 @@ public class UserDAO {
 
     //유저
     public UserVO user(Integer no){ return userMapper.user(no);}
+
+
 }

@@ -21,18 +21,20 @@
 <body>
     <div class="container">
         <div class="item-wrap">
-            <div class="item">
-                <div style="min-width: fit-content;"><img style="width:80%;height:100%;border-radius: 24px;" src="/img/store/user_2/김치찌개.jpg" alt=""></div>
+            <div class="item" th:each="order:${order}">
+                <div style="min-width: fit-content;"><img style="width:80%;height:100%;border-radius: 24px;" th:src="'/img/store/'+${order.storeName}+'/'+${order.storeName}+'.jpg'" alt=""></div>
                 <div style="width: 40%;">
-                    <h1>종임가게</h1>
+                    <h1 th:text="${order.storeName}"></h1>
                     <div style="display: inline-block;">
                         <strong style="font-size:20px;">주문내역</strong>
-                        <div><span>김치찌개</span><span> (1개)</span><span> 10,000원</span></div>
-                        <div><span>김치찌개</span><span> (1개)</span><span> 10,000원</span></div>
+                        <div th:each="menu:${menu}">
+                            <div th:if="${order.orderNo} == ${menu.orderNo}"><span th:text="${menu.foodName}"></span><span th:text="${menu.num}"></span><span th:text="${menu.price}"></span></div>
+                        </div>
+                        <!--                        <div><span>김치찌개</span><span> (1개)</span><span> 10,000원</span></div>-->
                     </div>
                 </div>
                 <div style="margin-top: 130px;margin-left: 86px;">
-                    <div style="font-size: 20px;margin-top: -30px;">결제 금액 : <strong>20,000원</strong></div>
+                    <div style="font-size: 20px;margin-top: -30px;">결제 금액 : <strong th:text="${order.totalMoney}"></strong></div>
                     <div style="margin-top: 15px">
                         <button>리뷰쓰기</button>
                         <button>가게보기</button>
@@ -40,7 +42,7 @@
                 </div>
                 <div class="state-wrap">
                     <div style="display: inline-block;margin-right: 15px;font-size: 18px;">2022.12.28</div>
-                    <strong style="font-size: 22px">주문대기</strong>
+                    <strong style="font-size: 22px" th:text="${order.status}"></strong>
                     <div class="state"></div>
                 </div>
             </div>
