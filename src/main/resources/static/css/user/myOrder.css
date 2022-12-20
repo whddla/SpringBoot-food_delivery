@@ -36,11 +36,35 @@ img {
     right: 25px;
 }
 
-.state{
+.state0{
+    border-radius: 15px;
+    width: 20px;
+    margin-bottom: -2px;
+    height: 20px;
+    background: red;
+    display: inline-block;
+}
+.state1{
     border-radius: 15px;
     width: 20px;
     margin-bottom: -2px;
     height: 20px;
     background: goldenrod;
+    display: inline-block;
+}
+.state2{
+    border-radius: 15px;
+    width: 20px;
+    margin-bottom: -2px;
+    height: 20px;
+    background: goldenrod;
+    display: inline-block;
+}
+.state3{
+    border-radius: 15px;
+    width: 20px;
+    margin-bottom: -2px;
+    height: 20px;
+    background: lawngreen;
     display: inline-block;
 }

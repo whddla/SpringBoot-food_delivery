@@ -28,22 +28,24 @@
                     <div style="display: inline-block;">
                         <strong style="font-size:20px;">주문내역</strong>
                         <div th:each="menu:${menu}">
-                            <div th:if="${order.orderNo} == ${menu.orderNo}"><span th:text="${menu.foodName}"></span><span th:text="${menu.num}"></span><span th:text="${menu.price}"></span></div>
+                            <div th:if="${order.orderNo} == ${menu.orderNo}"><span th:text="${menu.foodName}"></span><span th:text="' ('+${menu.num}+'개) '"></span><span th:text="${menu.price}+'원'"></span></div>
                         </div>
-                        <!--                        <div><span>김치찌개</span><span> (1개)</span><span> 10,000원</span></div>-->
                     </div>
                 </div>
                 <div style="margin-top: 130px;margin-left: 86px;">
-                    <div style="font-size: 20px;margin-top: -30px;">결제 금액 : <strong th:text="${order.totalMoney}"></strong></div>
+                    <div style="font-size: 20px;margin-top: -30px;">결제 금액 : <strong th:text="${order.totalMoney}+ '원'"></strong></div>
                     <div style="margin-top: 15px">
                         <button>리뷰쓰기</button>
                         <button>가게보기</button>
                     </div>
                 </div>
                 <div class="state-wrap">
-                    <div style="display: inline-block;margin-right: 15px;font-size: 18px;">2022.12.28</div>
+                    <div style="display: inline-block;margin-right: 15px;font-size: 18px;" th:text="${order.orderDate}"></div>
                     <strong style="font-size: 22px" th:text="${order.status}"></strong>
-                    <div class="state"></div>
+                    <div class="state0" th:if="${order.status} == '주문대기'"></div>
+                    <div class="state1" th:if="${order.status} == '주문진행'"></div>
+                    <div class="state2" th:if="${order.status} == '배달진행'"></div>
+                    <div class="state3" th:if="${order.status} == '배달완료'"></div>
                 </div>
             </div>
         </div>
