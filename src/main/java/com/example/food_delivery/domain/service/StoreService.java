@@ -1,7 +1,9 @@
 package com.example.food_delivery.domain.service;
 
 import com.example.food_delivery.domain.vo.MenuVO;
+import com.example.food_delivery.domain.vo.OrderMenuVO;
 import com.example.food_delivery.domain.vo.StoreVO;
+import com.example.food_delivery.domain.vo.UserOrderVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,4 +19,8 @@ public interface StoreService {
 
     // 주문 화면 가게
     public StoreVO order(StoreVO storeVO, Integer no);
+
+    public UserOrderVO orderList(UserOrderVO userOrderVO, String orderNo);
+    public List<OrderMenuVO> menuList(OrderMenuVO orderMenuVO, String orderNo);
+
 }

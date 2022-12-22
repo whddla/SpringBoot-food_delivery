@@ -2,7 +2,9 @@ package com.example.food_delivery.domain.service;
 
 import com.example.food_delivery.domain.dao.StoreDAO;
 import com.example.food_delivery.domain.vo.MenuVO;
+import com.example.food_delivery.domain.vo.OrderMenuVO;
 import com.example.food_delivery.domain.vo.StoreVO;
+import com.example.food_delivery.domain.vo.UserOrderVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,4 +32,10 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public StoreVO order(StoreVO storeVO, Integer no) {return storeDAO.order(storeVO, no);}
+
+    @Override
+    public UserOrderVO orderList(UserOrderVO userOrderVO, String orderNo){return storeDAO.orderList(userOrderVO, orderNo);}
+
+    @Override
+    public List<OrderMenuVO> menuList(OrderMenuVO orderMenuVO, String orderNo){return storeDAO.menuList(orderMenuVO, orderNo);}
 }

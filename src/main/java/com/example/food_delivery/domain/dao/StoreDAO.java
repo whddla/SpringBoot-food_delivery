@@ -1,7 +1,9 @@
 package com.example.food_delivery.domain.dao;
 
 import com.example.food_delivery.domain.vo.MenuVO;
+import com.example.food_delivery.domain.vo.OrderMenuVO;
 import com.example.food_delivery.domain.vo.StoreVO;
+import com.example.food_delivery.domain.vo.UserOrderVO;
 import com.example.food_delivery.mapper.MenuMapper;
 import com.example.food_delivery.mapper.StoreMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +24,7 @@ public class StoreDAO {
         return menuMapper.menu(menuVO, no);
     }
     public StoreVO order(StoreVO storeVO, Integer no){ return storeMapper.order(storeVO, no); }
+    public UserOrderVO orderList(UserOrderVO userOrderVO, String orderNo){ return storeMapper.getOrderList(userOrderVO, orderNo); }
+    public List<OrderMenuVO> menuList(OrderMenuVO orderMenuVO, String orderNo){ return storeMapper.getMenuList(orderMenuVO, orderNo); }
     }
 

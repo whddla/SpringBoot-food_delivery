@@ -3,7 +3,9 @@ package com.example.food_delivery.domain.controller;
 import com.example.food_delivery.domain.service.StoreService;
 import com.example.food_delivery.domain.service.UserService;
 import com.example.food_delivery.domain.vo.MenuVO;
+import com.example.food_delivery.domain.vo.OrderMenuVO;
 import com.example.food_delivery.domain.vo.StoreVO;
+import com.example.food_delivery.domain.vo.UserOrderVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -35,18 +37,10 @@ public class StoreController {
         return "store/completion";
     }
 
-    @GetMapping("store/detail")
-    public String detailPage(){
-        return "store/detail";
-    }
-
-    @GetMapping("store/progress")
-    public String progressPage(){
-        return "store/progress";
-    }
-
     @GetMapping("store/order")
-    public String orderPage(){
+    public String orderPage(Model model, String orderNo, UserOrderVO userOrderVO, OrderMenuVO orderMenuVO){
+        model.addAttribute("order",storeService.orderList(userOrderVO,orderNo));
+        model.addAttribute("menu",storeService.menuList(orderMenuVO,orderNo));
         return "store/order";
     }
 }

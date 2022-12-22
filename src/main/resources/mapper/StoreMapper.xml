@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.food_delivery.mapper.StoreMapper">
+    <!--  카테고리 페이지  -->
     <select id="cate" resultType="StoreVO">
         SELECT * FROM STORE WHERE MENU_NO = #{no}
     </select>
+    <!--  유저 주문 페이지  -->
     <select id="order" resultType="StoreVO">
         SELECT * FROM STORE WHERE NO = #{no}
     </select>
+    <!-- 주문 접수 페이지 -->
+    <select id="getOrderList" resultType="UserOrderVO">
+        SELECT * FROM TBL_USER_ORDER
+        WHERE ORDER_NO = ${orderNo}
+    </select>
+    <!--  주문 메뉴  -->
+    <select id="getMenuList" resultType="OrderMenuVO">
+        SELECT * FROM ORDER_MENU
+        WHERE ORDER_NO = ${orderNo}
+    </select>
+
 </mapper>
