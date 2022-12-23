@@ -2,15 +2,16 @@ package com.example.food_delivery.domain.controller;
 
 import com.example.food_delivery.domain.service.StoreService;
 import com.example.food_delivery.domain.service.UserService;
-import com.example.food_delivery.domain.vo.MenuVO;
-import com.example.food_delivery.domain.vo.OrderMenuVO;
-import com.example.food_delivery.domain.vo.StoreVO;
-import com.example.food_delivery.domain.vo.UserOrderVO;
+import com.example.food_delivery.domain.vo.*;
+import com.example.food_delivery.web.SessionConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 //@RestController api 확인시 기존 Conroller 어노테이션 주석하고 이거 활성
 @Controller
@@ -38,9 +39,17 @@ public class StoreController {
     }
 
     @GetMapping("store/order")
-    public String orderPage(Model model, String orderNo, UserOrderVO userOrderVO, OrderMenuVO orderMenuVO){
-        model.addAttribute("order",storeService.orderList(userOrderVO,orderNo));
-        model.addAttribute("menu",storeService.menuList(orderMenuVO,orderNo));
-        return "store/order";
+    public String orderPage(HttpServletRequest request,Model model, UserOrderVO userOrderVO, OrderMenuVO orderMenuVO){
+        HttpSession session = request.getSession();
+        UserVO user = (UserVO) session.getAttribute(SessionConstants.LOGIN_USER);
+        Integer no = user.getNo();
+        Integer ceo = user.getCeo();
+        if(ceo == 1){
+            model.addAttribute("order",storeService.orderList(userOrderVO,no));
+            model.addAttribute("menu",storeService.menuList(orderMenuVO,no));
+            return "store/order";
+        }else{
+            return "/";
+        }
     }
 }

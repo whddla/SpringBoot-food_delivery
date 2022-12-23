@@ -34,8 +34,8 @@ public class StoreServiceImpl implements StoreService {
     public StoreVO order(StoreVO storeVO, Integer no) {return storeDAO.order(storeVO, no);}
 
     @Override
-    public UserOrderVO orderList(UserOrderVO userOrderVO, String orderNo){return storeDAO.orderList(userOrderVO, orderNo);}
+    public List<UserOrderVO> orderList(UserOrderVO userOrderVO, Integer no){return storeDAO.orderList(userOrderVO, no);}
 
     @Override
-    public List<OrderMenuVO> menuList(OrderMenuVO orderMenuVO, String orderNo){return storeDAO.menuList(orderMenuVO, orderNo);}
+    public List<OrderMenuVO> menuList(OrderMenuVO orderMenuVO, Integer no){return storeDAO.menuList(orderMenuVO, no);}
 }

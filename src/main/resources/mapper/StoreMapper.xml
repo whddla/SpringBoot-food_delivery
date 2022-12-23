@@ -11,13 +11,13 @@
     </select>
     <!-- 주문 접수 페이지 -->
     <select id="getOrderList" resultType="UserOrderVO">
-        SELECT * FROM TBL_USER_ORDER
-        WHERE ORDER_NO = ${orderNo}
+        SELECT * FROM TBL_USER_ORDER WHERE STORE_NAME =
+        (SELECT STORE_NAME FROM STORE WHERE CEO_NO = #{no})
     </select>
     <!--  주문 메뉴  -->
     <select id="getMenuList" resultType="OrderMenuVO">
-        SELECT * FROM ORDER_MENU
-        WHERE ORDER_NO = ${orderNo}
+        SELECT * FROM ORDER_MENU WHERE ORDER_NO IN
+        (SELECT ORDER_NO FROM TBL_USER_ORDER WHERE STORE_NAME = (SELECT STORE_NAME FROM STORE WHERE CEO_NO = #{no}))
     </select>
 
 </mapper>
