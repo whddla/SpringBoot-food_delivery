@@ -19,7 +19,7 @@
 </head>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 <body>
-    <div class="container" th:each="order:${order}">
+    <div class="container">
         <div class="manage">
             <div class="top-menu">
                 <button><a href="/store/order">주문접수</a></button>
@@ -30,11 +30,11 @@
                     <button class="active"><a href="/store/order">처리중</a></button>
                     <button><a href="/store/completion" style="color: #fff;">완료</a></button>
                 </div>
-                <div class="menu-list" th:each="menu:${menu}">
+                <div class="menu-list">
                     <div style="border-bottom: 1px solid #ddd;text-align: center;font-weight: 700;">
                         신규
                     </div>
-                    <div class="select-menu">
+                    <div class="select-menu" th:each="order:${order}">
                         <strong>배달 <strong th:text="${order.orderNo}"></strong></strong><br>
                         <span>메뉴 <span>1개</span></span>
                         <div class="new">신규</div>
