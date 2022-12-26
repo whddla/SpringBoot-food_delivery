@@ -36,7 +36,9 @@
                     </div>
                     <div class="select-menu" th:each="order:${order}">
                         <strong>배달 <strong th:text="${order.orderNo}"></strong></strong><br>
-                        <span>메뉴 <span>1개</span></span>
+                        <div th:each="menu:${menu}">
+                            <span>메뉴 <span th:if="${menu.orderNo}==${order.orderNo}" th:text="${menu.size}"></span></span>
+                        </div>
                         <div class="new">신규</div>
                     </div>
                     <div style="border-bottom: 1px solid #ddd;text-align: center;font-weight: 700;">
