@@ -35,11 +35,15 @@
                         신규
                     </div>
                     <div class="select-menu" th:each="order:${order}">
-                        <strong>배달 <strong th:text="${order.orderNo}"></strong></strong><br>
-                        <div th:each="menu:${menu}">
-                            <span>메뉴 <span th:if="${menu.orderNo}==${order.orderNo}"></span></span>
+                        <div th:onclick="'location.href +=\''+'/'+@{${order.orderNo}}+'\''" style="cursor: pointer;">
+                            <strong>배달 <strong th:text="${order.orderNo}"></strong></strong><br>
+                            <div th:each="menu:${menu}">
+                                <div th:id="${order.orderNo}" th:if="${menu.orderNo}==${order.orderNo}">
+                                    <span id="menuCount"></span>
+                                </div>
+                            </div>
+                            <div class="new">신규</div>
                         </div>
-                        <div class="new">신규</div>
                     </div>
                     <div style="border-bottom: 1px solid #ddd;text-align: center;font-weight: 700;">
                         진행
@@ -144,4 +148,5 @@
         </div>
     </div>
 </body>
+<script th:src="@{/js/store/order.js}"></script>
 </html>
