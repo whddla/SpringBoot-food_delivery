@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
+@RestController
 public class StoreController {
     private final StoreService storeService;
 
@@ -48,6 +51,20 @@ public class StoreController {
             model.addAttribute("order",storeService.orderList(userOrderVO,no));
             model.addAttribute("menu",storeService.menuList(orderMenuVO,no));
             return "store/order";
+        }else{
+            return "/";
+        }
+    }
+    @GetMapping("store/order/{orderNo}")
+    public String orderSelectPage(@RequestParam String orderNo, HttpServletRequest request, Model model, UserOrderVO userOrderVO, OrderMenuVO orderMenuVO){
+        HttpSession session = request.getSession();
+        UserVO user = (UserVO) session.getAttribute(SessionConstants.LOGIN_USER);
+        Integer no = user.getNo();
+        Integer ceo = user.getCeo();
+        if(ceo == 1){
+            model.addAttribute("order",storeService.orderList(userOrderVO,no));
+            model.addAttribute("menu",storeService.menuList(orderMenuVO,no));
+            return "store/order/{orderNo}";
         }else{
             return "/";
         }

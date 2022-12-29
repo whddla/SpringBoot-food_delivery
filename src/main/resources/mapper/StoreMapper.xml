@@ -15,9 +15,11 @@
         (SELECT STORE_NAME FROM STORE WHERE CEO_NO = #{no})
     </select>
     <!--  주문 메뉴  -->
-    <select id="getMenuList" resultType="OrderMenuVO">
+    <select id="getMenuList" resultMap="mapping_menuList">
         SELECT * FROM ORDER_MENU WHERE ORDER_NO IN
         (SELECT ORDER_NO FROM TBL_USER_ORDER WHERE STORE_NAME = (SELECT STORE_NAME FROM STORE WHERE CEO_NO = #{no}))
     </select>
-
+    <resultMap type="com.example.food_delivery.domain.vo.OrderMenuVO" id="mapping_menuList">
+        <result property="menuPrice" column="MENU_PRICE"/>
+    </resultMap>
 </mapper>

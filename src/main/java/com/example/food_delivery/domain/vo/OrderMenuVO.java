@@ -9,7 +9,7 @@ public class OrderMenuVO {
     private Integer no;
     private String foodName;
     private String num;
-    private String price;
+    private String menuPrice;
     private String orderNo;
     private Integer userNo;
 
