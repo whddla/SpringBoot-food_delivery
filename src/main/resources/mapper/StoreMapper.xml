@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.food_delivery.mapper.StoreMapper">
     <!--  카테고리 페이지  -->
-    <select id="cate" resultType="StoreVO">
+    <select id="cate" resultType="storeVO">
         SELECT * FROM STORE WHERE MENU_NO = #{no}
     </select>
     <!--  유저 주문 페이지  -->
-    <select id="order" resultType="StoreVO">
+    <select id="order" resultType="storeVO">
         SELECT * FROM STORE WHERE NO = #{no}
     </select>
     <!-- 주문 접수 페이지 -->
-    <select id="getOrderList" resultType="UserOrderVO">
+    <select id="getOrderList" resultType="userOrderVO">
         SELECT * FROM TBL_USER_ORDER WHERE STORE_NAME =
         (SELECT STORE_NAME FROM STORE WHERE CEO_NO = #{no})
     </select>
@@ -22,4 +22,11 @@
     <resultMap type="com.example.food_delivery.domain.vo.OrderMenuVO" id="mapping_menuList">
         <result property="menuPrice" column="MENU_PRICE"/>
     </resultMap>
+    <!--  주문 번호로 주문 내역 가져 오기  -->
+    <select id="getOrder" resultType="userOrderVO">
+        SELECT * FROM TBL_USER_ORDER WHERE ORDER_NO = #{orderNo}
+    </select>
+    <select id="getMenu" resultType="orderMenuVO">
+        SELECT * FROM ORDER_MENU WHERE ORDER_NO = #{orderNo}
+    </select>
 </mapper>

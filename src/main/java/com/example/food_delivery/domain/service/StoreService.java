@@ -19,7 +19,8 @@ public interface StoreService {
 
     // 주문 화면 가게
     public StoreVO order(StoreVO storeVO, Integer no);
-
+    public UserOrderVO getOrder(UserOrderVO userOrderVO, String orderNo);
+    public List<OrderMenuVO> getMenu(OrderMenuVO orderMenuVO, String orderNo);
     public List<UserOrderVO> orderList(UserOrderVO userOrderVO, Integer no);
     public List<OrderMenuVO> menuList(OrderMenuVO orderMenuVO, Integer no);
 

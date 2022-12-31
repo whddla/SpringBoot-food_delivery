@@ -6,20 +6,21 @@ import com.example.food_delivery.domain.vo.*;
 import com.example.food_delivery.web.SessionConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.sonatype.inject.Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 //@RestController api 확인시 기존 Conroller 어노테이션 주석하고 이거 활성
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-@RestController
 public class StoreController {
     private final StoreService storeService;
 
@@ -47,26 +48,16 @@ public class StoreController {
         UserVO user = (UserVO) session.getAttribute(SessionConstants.LOGIN_USER);
         Integer no = user.getNo();
         Integer ceo = user.getCeo();
-        if(ceo == 1){
-            model.addAttribute("order",storeService.orderList(userOrderVO,no));
-            model.addAttribute("menu",storeService.menuList(orderMenuVO,no));
-            return "store/order";
-        }else{
-            return "/";
-        }
+        model.addAttribute("order",storeService.orderList(userOrderVO,no));
+        model.addAttribute("menu",storeService.menuList(orderMenuVO,no));
+        return "store/order";
     }
-    @GetMapping("store/order/{orderNo}")
-    public String orderSelectPage(@RequestParam String orderNo, HttpServletRequest request, Model model, UserOrderVO userOrderVO, OrderMenuVO orderMenuVO){
-        HttpSession session = request.getSession();
-        UserVO user = (UserVO) session.getAttribute(SessionConstants.LOGIN_USER);
-        Integer no = user.getNo();
-        Integer ceo = user.getCeo();
-        if(ceo == 1){
-            model.addAttribute("order",storeService.orderList(userOrderVO,no));
-            model.addAttribute("menu",storeService.menuList(orderMenuVO,no));
-            return "store/order/{orderNo}";
-        }else{
-            return "/";
-        }
+    @ResponseBody
+    @RequestMapping(value = "/orderNo")
+    public Object orderSelectPage(@RequestBody UserOrderVO object,UserOrderVO userOrderVO, OrderMenuVO orderMenuVO){
+        Object menu = storeService.getMenu(orderMenuVO, object.getOrderNo());
+        Object order = storeService.getOrder(userOrderVO, object.getOrderNo());
+        Object[] arr = {menu, order};
+        return arr;
     }
 }

@@ -35,7 +35,8 @@
                         신규
                     </div>
                     <div class="select-menu" th:each="order:${order}">
-                        <div th:onclick="'location.href +=\''+'/'+@{${order.orderNo}}+'\''" style="cursor: pointer;">
+                        <div th:orderNo="${order.orderNo}"
+                             th:onclick="orderNo(this.getAttribute('orderNo'))" style="cursor: pointer;">
                             <strong>배달 <strong th:text="${order.orderNo}"></strong></strong><br>
                             <div th:each="menu:${menu}">
                                 <div th:id="${order.orderNo}" th:if="${menu.orderNo}==${order.orderNo}">
@@ -148,5 +149,24 @@
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script th:src="@{/js/store/order.js}"></script>
+<script th:inline="javascript">
+    function orderNo(orderNo) {
+        console.log(orderNo)
+        var json = {
+            orderNo : orderNo
+        }
+        $.ajax({
+            url:"/orderNo",
+            type:"POST",
+            data:JSON.stringify(json),
+            dataType:'json',
+            contentType: "application/json; charset=UTF-8",
+            success : function (data) {
+                console.log(data);
+            }
+        })
+    }
+</script>
 </html>

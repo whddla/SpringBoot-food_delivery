@@ -16,6 +16,8 @@ public interface StoreMapper {
 
     //주문화면
     public StoreVO order(StoreVO storeVO,Integer no);
+    public UserOrderVO getOrder(UserOrderVO userOrderVO, String orderNo);
+    public List<OrderMenuVO> getMenu(OrderMenuVO orderMenuVO, String orderNo);
     public List<UserOrderVO> getOrderList(UserOrderVO userOrderVO, Integer no);
     public List<OrderMenuVO> getMenuList(OrderMenuVO orderMenuVO, Integer no);
 }
