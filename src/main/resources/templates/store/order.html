@@ -34,7 +34,10 @@
                     <div style="border-bottom: 1px solid #ddd;text-align: center;font-weight: 700;">
                         신규
                     </div>
-                    <div class="select-menu" th:each="order:${order}">
+                    <div th:if="${order == null}" style="text-align: center" id="default">
+                        <h4>주문 정보가 없습니다.</h4>
+                    </div>
+                    <div th:if="${order != null}" class="select-menu" th:each="order:${order}">
                         <div th:orderNo="${order.orderNo}"
                              th:onclick="orderNo(this.getAttribute('orderNo'))" style="cursor: pointer;">
                             <strong>배달 <strong th:text="${order.orderNo}"></strong></strong><br>
@@ -49,6 +52,9 @@
                     <div style="border-bottom: 1px solid #ddd;text-align: center;font-weight: 700;">
                         진행
                     </div>
+                    <div th:if="${order == null}" style="text-align: center" id="default">
+                        <h4>주문 정보가 없습니다.</h4>
+                    </div>
                     <div class="select-menu">
                         <strong>배달 번호</strong><br>
                         <span>메뉴 1개</span>
@@ -56,7 +62,10 @@
                     </div>
                 </div>
                 <div style="width: 70%;background-color: #f5f5f5;">
-                    <div>
+                    <div th:if="${order == null}" id="default">
+                        <h1>정보가 없습니다.</h1>
+                    </div>
+                    <div style="display: none;" id="showMenu">
                         <div style="padding: 20px;display: flex;justify-content: space-between;">
                             <div>
                                 <div style="font-size: 25px;font-weight: 700;">배달 번호</div>
@@ -165,8 +174,10 @@
             contentType: "application/json; charset=UTF-8",
             success : function (data) {
                 console.log(data);
-                console.log(data.arr)
-                for(var i = 0; i<data.arr[0].length;i++){
+                for(var i = 0; i<data.length;i++){
+                    console.log('등장' + i);
+                    console.log(data[0][i]);
+                    console.log(data[1].no);
                 }
             }
         })
