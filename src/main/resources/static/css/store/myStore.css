@@ -150,3 +150,36 @@ h1{
 .update div{
     padding: 10px;
 }
+
+.submit{
+    width: 80px;
+}
+
+#inpList{
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #333;
+    background: white;
+    border-radius: 14px;
+    height: 34px;
+    line-height: 35px;
+    width: 100px;
+}
+
+#inpList input{
+    border: none;
+    background: none;
+    padding: 0;
+    width: 29px;
+    height: 36px;
+}
+
+#inpList input:nth-child(2){
+    width: 25px;
+    height: 22px;
+}
+
+.view {
+    background: #e4dddd;
+}
+

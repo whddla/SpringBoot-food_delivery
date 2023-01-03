@@ -14,8 +14,10 @@ public class UserOrderVO {
     private String orderDate;
     private String tip;
     private String payment;
+    private String phone;
     private String forCeo;
     private String forRider;
     private String location;
     private String totalMoney;
+    private String note;
 }
