@@ -9,7 +9,7 @@ public class UserOrderVO {
     private Integer no;
     private Integer userNo;
     private String orderNo;
-    private String status;
+    private String state;
     private String storeName;
     private String orderDate;
     private String tip;

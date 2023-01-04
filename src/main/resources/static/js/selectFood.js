@@ -91,6 +91,26 @@ function fnCalCount(type, e) {
         pMoney.value = parseInt(pMoney.value) - cMoney
         tMoney.value = parseInt(tMoney.value) - cMoney
     }
+}
 
 
+function Count(type, e) {
+    var pinp = $(e).siblings("input")[1];
+    var minp = $(e).siblings("input")[0];
+    // plus눌렀을때 count
+    var pCount = parseInt(pinp.value);
+    // minus눌렀을때 count
+    var mCount = parseInt(minp.value);
+    if(type=='p'){
+        pinp.value = pCount + 1
+    }
+    else if(pCount <= 20){
+        pinp.value = 20
+    }
+    else if(mCount <= 20){
+        minp.value = 20
+    }
+    else{
+        minp.value = mCount - 1
+    }
 }

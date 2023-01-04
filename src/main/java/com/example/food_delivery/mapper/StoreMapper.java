@@ -20,4 +20,11 @@ public interface StoreMapper {
     public List<OrderMenuVO> getMenu(OrderMenuVO orderMenuVO, String orderNo);
     public List<UserOrderVO> getOrderList(UserOrderVO userOrderVO, Integer no);
     public List<OrderMenuVO> getMenuList(OrderMenuVO orderMenuVO, Integer no);
+
+    //주문 접수
+    public String updateReceipt(String orderNo);
+    //주문 거절
+    public String updateRefuse(String orderNo, String note);
+    //주문 완료
+    public String updateCompletion(String orderNo);
 }

@@ -30,17 +30,14 @@
                     <button class="active"><a href="/store/order">처리중</a></button>
                     <button><a href="/store/completion" style="color: #fff;">완료</a></button>
                 </div>
-                <div class="menu-list">
-                    <div style="border-bottom: 1px solid #ddd;text-align: center;font-weight: 700;">
-                        신규
+                <div class="menu-list" id="menuList">
+                    <div style="height:30px;padding-top: 10px;border-bottom: 1px solid #ddd;text-align: center;font-weight: 700;">
+                        주문내역
                     </div>
-                    <div th:if="${order == null}" style="text-align: center" id="default">
-                        <h4>주문 정보가 없습니다.</h4>
-                    </div>
-                    <div th:if="${order != null}" class="select-menu" th:each="order:${order}" th:id="${order.orderNo}+'Class'">
-                        <div th:orderNo="${order.orderNo}"
+                    <div class="select-menu" th:each="order:${order}" th:id="${order.orderNo}+'Class'">
+                        <div th:if="${order.state == '주문대기'}" th:orderNo="${order.orderNo}"
                              th:onclick="orderNo(this.getAttribute('orderNo'))" style="cursor: pointer;">
-                            <strong>배달 <strong th:text="${order.orderNo}"></strong></strong><br>
+                            <strong>주문번호 <strong th:text="${order.orderNo}"></strong></strong><br>
                             <div th:each="menu:${menu}">
                                 <div th:id="${order.orderNo}" th:if="${menu.orderNo}==${order.orderNo}">
                                     <span id="menuCount"></span>
@@ -48,17 +45,16 @@
                             </div>
                             <div class="new" id="new">신규</div>
                         </div>
-                    </div>
-                    <div style="border-bottom: 1px solid #ddd;text-align: center;font-weight: 700;">
-                        진행
-                    </div>
-                    <div th:if="${order == null}" style="text-align: center" id="default">
-                        <h4>주문 정보가 없습니다.</h4>
-                    </div>
-                    <div class="select-menu">
-                        <strong>배달 번호</strong><br>
-                        <span>메뉴 1개</span>
-                        <div class="ing">60분</div>
+                        <div th:if="${order.state == '주문진행'}" th:orderNo="${order.orderNo}"
+                             th:onclick="orderNo(this.getAttribute('orderNo'))" style="cursor: pointer;">
+                            <strong>주문번호 <strong th:text="${order.orderNo}"></strong></strong><br>
+                            <div th:each="menu:${menu}">
+                                <div th:id="${order.orderNo}" th:if="${menu.orderNo}==${order.orderNo}">
+                                    <span id="menuCount"></span>
+                                    <div class="ing">60분</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div style="width: 70%;background-color: #f5f5f5;">
@@ -75,13 +71,7 @@
                                     <strong id="pay"> (결제완료)</strong>
                                 </div>
                             </div>
-                            <div style="align-self: center;width: 40%;margin-top: 20px">
-                                <button class="submit" id="">거부</button>
-                                <div id="inpList">
-                                    <input type="button" onclick="fnCalCount('m',this);" value="-"><input name="cnt" value="60">분<input type="button" onclick="fnCalCount('p',this);" value="+">
-                                </div>
-                                <button class="submit" id="">접수</button>
-                            </div>
+                            <div id="rightBtns"></div>
                         </div>
                         <div style="display: flex;padding: 20px;justify-content: space-around;height: 488px;">
                             <div style="width: 55%;display: flex;flex-direction: column;justify-content: space-between;">
@@ -142,81 +132,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script th:src="@{/js/store/order.js}"></script>
-<script th:inline="javascript">
-    $(document).ready(function () {
-       document.getElementById("default").style.display = "block";
-    });
-
-    function fnCalCount(type, e) {
-        var pinp = $(e).siblings("input")[1];
-        var minp = $(e).siblings("input")[0];
-        // plus눌렀을때 count
-        var pCount = parseInt(pinp.value);
-        // minus눌렀을때 count
-        var mCount = parseInt(minp.value);
-        if(type=='p'){
-            pinp.value = pCount + 1
-        }else if(mCount <= 20){
-            minp.value = 20
-        }
-        else{
-            minp.value = mCount - 1
-        }
-    }
-
-    function orderNo(orderNo) {
-        document.getElementById(orderNo+"Class").classList.add('view');
-        document.getElementById("default").style.display = "none";
-        document.getElementById("showMenu").style.display = "block";
-        var json = {
-            orderNo : orderNo
-        }
-        $.ajax({
-            url:"/orderNo",
-            type:"POST",
-            data:JSON.stringify(json),
-            dataType:'json',
-            contentType: "application/json; charset=UTF-8",
-            success : function (data) {
-                var menuCount = data[0].length;
-                var div = document.getElementById("menu")
-                div.innerHTML = "";
-                for(var i = 0; i<menuCount;i++){
-                    div.innerHTML +=
-                        `
-                           <tr>
-                               <td>`+data[0][i].foodName +`</td>
-                               <td>`+data[0][i].num +`개</td>
-                               <td>`+data[0][i].menuPrice +`원</td>
-                           </tr>
-
-                        `;
-                }
-                div.innerHTML += `
-                    <tr>
-                        <td>배달팁</td>
-                        <td></td>
-                        <td>`+data[1].tip+`원</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>`+menuCount+`개</td>
-                        <td>`+data[1].totalMoney+`원</td>
-                    </tr>
-                `;
-
-                document.getElementById("orderNum").innerText = data[1].orderNo;
-                document.getElementById("orderNum1").innerText = data[1].orderNo;
-                document.getElementById("count").innerText = menuCount;
-                document.getElementById("forCeo").value = data[1].forCeo;
-                document.getElementById("forRider").value = data[1].forRider;
-                document.getElementById("address").innerText = data[1].location;
-                document.getElementById("phone").innerText = data[1].phone;
-                document.getElementById("orderTime").innerText = data[1].orderDate;
-                document.getElementById("storeName").innerText = data[1].storeName;
-                document.getElementById("money").innerText = data[1].totalMoney;
-            }
-        })
-    }
-</script>
+<script th:src="@{/js/selectFood.js}"></script>
 </html>

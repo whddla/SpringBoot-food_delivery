@@ -152,18 +152,26 @@ h1{
 }
 
 .submit{
-    width: 80px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 23%;
+    border-radius: 20px;
+    height: 45px;
+    border: 1px solid;
+    background: white;
 }
 
+
 #inpList{
-    display: inline-block;
+    display: inherit;
     text-align: center;
+    align-items: center;
     border: 1px solid #333;
     background: white;
-    border-radius: 14px;
-    height: 34px;
-    line-height: 35px;
-    width: 100px;
+    border-radius: 26px;
+    justify-content: space-around;
+    height: 45px;
+    width: 40%;
 }
 
 #inpList input{
@@ -172,6 +180,7 @@ h1{
     padding: 0;
     width: 29px;
     height: 36px;
+    cursor: pointer;
 }
 
 #inpList input:nth-child(2){
@@ -183,3 +192,26 @@ h1{
     background: #e4dddd;
 }
 
+#rightBtns {
+    align-self: center;
+    width: 40%;
+    place-content: space-evenly;
+    display: inherit;
+    margin-top: 20px;
+}
+
+.waitBtn{
+    font-size: 1rem;
+    width: 40%;
+    cursor: pointer;
+    background: white;
+    height: 45px;
+    border: 1px solid;
+    border-radius: 29px;
+}
+
+.waitBtn:hover, .submit:hover{
+    background: #2456ed;
+    border: 1px solid #333;
+    color: white;
+}

@@ -24,4 +24,10 @@ public interface StoreService {
     public List<UserOrderVO> orderList(UserOrderVO userOrderVO, Integer no);
     public List<OrderMenuVO> menuList(OrderMenuVO orderMenuVO, Integer no);
 
+    //주문 접수
+    public String updateReceipt(String orderNo);
+    //주문 거절
+    public String updateRefuse(String orderNo, String note);
+    //주문 완료
+    public String updateCompletion(String orderNo);
 }

@@ -28,5 +28,16 @@ public class StoreDAO {
     public List<OrderMenuVO> getMenu(OrderMenuVO orderMenuVO, String orderNo){ return storeMapper.getMenu(orderMenuVO, orderNo); }
     public List<UserOrderVO> orderList(UserOrderVO userOrderVO, Integer no){ return storeMapper.getOrderList(userOrderVO, no); }
     public List<OrderMenuVO> menuList(OrderMenuVO orderMenuVO, Integer no){ return storeMapper.getMenuList(orderMenuVO, no); }
+
+    public String receipt(String orderNo){
+        return storeMapper.updateReceipt(orderNo);
     }
+    public String refuse(String orderNo, String note){
+        return storeMapper.updateRefuse(orderNo, note);
+    }
+    public String completion(String orderNo){
+        return storeMapper.updateCompletion(orderNo);
+    }
+
+}
 

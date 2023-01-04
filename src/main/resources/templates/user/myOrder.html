@@ -28,7 +28,7 @@
                     <div style="display: inline-block;">
                         <strong style="font-size:20px;">주문내역</strong>
                         <div th:each="menu:${menu}">
-                            <div th:if="${order.orderNo} == ${menu.orderNo}"><span th:text="${menu.foodName}"></span><span th:text="' ('+${menu.num}+'개) '"></span><span th:text="${menu.price}+'원'"></span></div>
+                            <div th:if="${order.orderNo} == ${menu.orderNo}"><span th:text="${menu.foodName}"></span><span th:text="' ('+${menu.num}+'개) '"></span><span th:text="${menu.menuPrice}+'원'"></span></div>
                         </div>
                     </div>
                 </div>
@@ -41,11 +41,10 @@
                 </div>
                 <div class="state-wrap">
                     <div style="display: inline-block;margin-right: 15px;font-size: 18px;" th:text="${order.orderDate}"></div>
-                    <strong style="font-size: 22px" th:text="${order.status}"></strong>
-                    <div class="state0" th:if="${order.status} == '주문대기'"></div>
-                    <div class="state1" th:if="${order.status} == '주문진행'"></div>
-                    <div class="state2" th:if="${order.status} == '배달진행'"></div>
-                    <div class="state3" th:if="${order.status} == '배달완료'"></div>
+                    <strong style="font-size: 22px" th:text="${order.state}"></strong>
+                    <div class="state0" th:if="${order.state} == '주문대기'"></div>
+                    <div class="state1" th:if="${order.state} == '주문진행'"></div>
+                    <div class="state3" th:if="${order.state} == '주문완료'"></div>
                 </div>
             </div>
         </div>

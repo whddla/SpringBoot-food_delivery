@@ -44,4 +44,20 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public List<OrderMenuVO> menuList(OrderMenuVO orderMenuVO, Integer no){return storeDAO.menuList(orderMenuVO, no);}
+
+    //주문 접수
+    @Override
+    public String updateReceipt(String orderNo){
+        return storeDAO.receipt(orderNo);
+    }
+    //주문 거절
+    @Override
+    public String updateRefuse(String orderNo, String note){
+        return storeDAO.refuse(orderNo, note);
+    }
+    //주문 완료
+    @Override
+    public String updateCompletion(String orderNo){
+        return storeDAO.completion(orderNo);
+    }
 }

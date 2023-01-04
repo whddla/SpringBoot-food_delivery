@@ -1,5 +1,6 @@
 package com.example.food_delivery.domain.controller;
 
+import com.example.food_delivery.domain.dao.StoreDAO;
 import com.example.food_delivery.domain.service.StoreService;
 import com.example.food_delivery.domain.service.UserService;
 import com.example.food_delivery.domain.vo.*;
@@ -23,6 +24,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StoreController {
     private final StoreService storeService;
+    private final StoreDAO storeDAO;
 
     //카테고리
     @GetMapping("cate")
@@ -59,5 +61,22 @@ public class StoreController {
         Object order = storeService.getOrder(userOrderVO, object.getOrderNo());
         Object[] arr = {menu, order};
         return arr;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/updateState")
+    public String orderReceipt(@RequestBody UserOrderVO object){
+        String msg = "";
+        if(object.getState().equals("주문대기")){
+            storeService.updateReceipt(object.getOrderNo());
+            msg = "주문성공";
+        }if(object.getState().equals("주문거절")){
+            storeService.updateRefuse(object.getOrderNo(),object.getNote());
+            msg = "주문거절";
+        }if(object.getState().equals("완료처리")){
+            storeService.updateCompletion(object.getOrderNo());
+            msg = "완료처리됨";
+        }
+        return msg;
     }
 }
