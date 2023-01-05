@@ -20,4 +20,5 @@ public class UserOrderVO {
     private String location;
     private String totalMoney;
     private String note;
+    private Integer deliveryTime;
 }

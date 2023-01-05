@@ -29,14 +29,14 @@ public class StoreDAO {
     public List<UserOrderVO> orderList(UserOrderVO userOrderVO, Integer no){ return storeMapper.getOrderList(userOrderVO, no); }
     public List<OrderMenuVO> menuList(OrderMenuVO orderMenuVO, Integer no){ return storeMapper.getMenuList(orderMenuVO, no); }
 
-    public String receipt(String orderNo){
-        return storeMapper.updateReceipt(orderNo);
+    public void receipt(String orderNo, Integer deliveryTime){
+        storeMapper.updateReceipt(orderNo, deliveryTime);
     }
-    public String refuse(String orderNo, String note){
-        return storeMapper.updateRefuse(orderNo, note);
+    public void refuse(String orderNo, String note){
+        storeMapper.updateRefuse(orderNo, note);
     }
-    public String completion(String orderNo){
-        return storeMapper.updateCompletion(orderNo);
+    public void completion(String orderNo){
+        storeMapper.updateCompletion(orderNo);
     }
 
 }

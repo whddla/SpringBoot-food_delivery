@@ -63,20 +63,30 @@ public class StoreController {
         return arr;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/updateState")
-    public String orderReceipt(@RequestBody UserOrderVO object){
-        String msg = "";
+//    @ResponseBody
+//    @RequestMapping(value = "/updateState")
+//    public void orderReceipt(@RequestBody UserOrderVO object){
+//        System.out.println(object.getOrderNo());
+//        if(object.getState().equals("주문대기")){
+//            storeService.updateReceipt(object.getOrderNo());
+//        }if(object.getState().equals("주문거절")){
+//            storeService.updateRefuse(object.getOrderNo(),object.getNote());
+//        }if(object.getState().equals("완료처리")){
+//            storeService.updateCompletion(object.getOrderNo());
+//        }
+//    }
+//    @ResponseBody
+    @GetMapping("updateState/{state}/{orderNo}/{deliveryTime}")
+    public String orderReceipt(UserOrderVO object){
+        System.out.println(object);
+        System.out.println(object.getOrderNo());
         if(object.getState().equals("주문대기")){
-            storeService.updateReceipt(object.getOrderNo());
-            msg = "주문성공";
+            storeService.updateReceipt(object.getOrderNo(),object.getDeliveryTime());
         }if(object.getState().equals("주문거절")){
             storeService.updateRefuse(object.getOrderNo(),object.getNote());
-            msg = "주문거절";
         }if(object.getState().equals("완료처리")){
             storeService.updateCompletion(object.getOrderNo());
-            msg = "완료처리됨";
         }
-        return msg;
+        return "redirect:/store/order";
     }
 }

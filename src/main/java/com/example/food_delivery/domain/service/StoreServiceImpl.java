@@ -47,17 +47,17 @@ public class StoreServiceImpl implements StoreService {
 
     //주문 접수
     @Override
-    public String updateReceipt(String orderNo){
-        return storeDAO.receipt(orderNo);
+    public void updateReceipt(String orderNo, Integer deliveryTime){
+        storeDAO.receipt(orderNo, deliveryTime);
     }
     //주문 거절
     @Override
-    public String updateRefuse(String orderNo, String note){
-        return storeDAO.refuse(orderNo, note);
+    public void updateRefuse(String orderNo, String note){
+        storeDAO.refuse(orderNo, note);
     }
     //주문 완료
     @Override
-    public String updateCompletion(String orderNo){
-        return storeDAO.completion(orderNo);
+    public void updateCompletion(String orderNo){
+        storeDAO.completion(orderNo);
     }
 }
