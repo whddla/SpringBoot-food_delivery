@@ -7,6 +7,7 @@
     <title>index</title>
     <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
     <link rel="stylesheet" th:href="@{/css/store/myStore.css}">
+    <link rel="stylesheet" th:href="@{/css/store/modal.css}">
     <!-- content script -->
     <th:block layout:fragment="css">
         <link rel="stylesheet" th:href="@{/css/layout/header.css}">
@@ -51,7 +52,7 @@
                             <div th:each="menu:${menu}">
                                 <div th:id="${order.orderNo}" th:if="${menu.orderNo}==${order.orderNo}">
                                     <span id="menuCount"></span>
-                                    <div class="ing">60분</div>
+                                    <div class="ing" th:text="${order.deliveryTime}+분"></div>
                                 </div>
                             </div>
                         </div>
@@ -128,6 +129,21 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="title">
+                <h2 id="title"></h2>
+            </div>
+            <div class="close-area" onclick="">X</div>
+            <div class="content">
+                <div id="reason"></div>
+                <button class="modal-btn">고객요청</button>
+                <button class="modal-btn">가게사정</button>
+                <button class="modal-btn">배달불가</button>
+                <button class="modal-btn">재료소진</button>
+            </div>
+        </div>`
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
