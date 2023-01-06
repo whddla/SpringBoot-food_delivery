@@ -50,7 +50,7 @@ public class OrderController {
         map.put("phone", params.get("phone"));
         map.put("tip", params.get("tip"));
         map.put("addr", params.get("addr"));
-        map.put("status", params.get("state"));
+        map.put("state", params.get("state"));
         map.put("forCeo", params.get("forCeo"));
         map.put("forRider", params.get("forRider"));
         map.put("detailAddr", params.get("detailAddr"));
