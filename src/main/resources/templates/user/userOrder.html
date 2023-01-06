@@ -183,7 +183,15 @@
 <script th:src="@{/js/pay.js}"></script>
 <script th:inline="javascript">
     var dt = new Date();
-    var str = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate()+' ' +dt.getHours()+':'+dt.getMinutes()+':'+dt.getSeconds();
+
+    if(dt.getMonth() < 9){
+        var month =  '0' + (dt.getMonth() +1)
+    }
+    if(dt.getDate() < 10){
+        var date = '0' +(dt.getDate())
+    }
+    var str = dt.getFullYear()+'-'+month+'-'+date
+        +' ' +dt.getHours()+':'+dt.getMinutes()+':'+dt.getSeconds();
     console.log(str)
     IMP = window.IMP;
     IMP.init("imp30553073");
@@ -199,7 +207,7 @@
             f.push(
                 {foodName:food_name[i].innerText,
                 num:food_cnt[i].value,
-                price:food_money[i].getElementsByTagName("span")[1].innerText,
+                menuPrice:food_money[i].getElementsByTagName("span")[1].innerText,
                 userNo: userVO.no}
             )
         }
