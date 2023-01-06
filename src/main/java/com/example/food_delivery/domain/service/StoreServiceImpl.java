@@ -55,6 +55,11 @@ public class StoreServiceImpl implements StoreService {
     public void updateRefuse(String orderNo, String note){
         storeDAO.refuse(orderNo, note);
     }
+    //주문 취소
+    @Override
+    public void updateCancel(String orderNo, String note){
+        storeDAO.refuse(orderNo, note);
+    }
     //주문 완료
     @Override
     public void updateCompletion(String orderNo){

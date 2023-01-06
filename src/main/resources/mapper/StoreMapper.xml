@@ -36,10 +36,15 @@
     </update>
     <!--  주문 거절  -->
     <update id="updateRefuse">
-        UPDATE TBL_USER_ORDER SET STATE = '주문거절' and NOTE = #{note} WHERE ORDER_NO = #{orderNo}
+        UPDATE TBL_USER_ORDER SET STATE = '주문거절' , NOTE = #{note} WHERE ORDER_NO = #{orderNo}
+    </update>
+    <!--  주문 취소  -->
+    <update id="updateCancel">
+        UPDATE TBL_USER_ORDER SET STATE = '주문취소' , NOTE = #{note} WHERE ORDER_NO = #{orderNo}
     </update>
     <!--  주문 완료 처리  -->
     <update id="updateFinish" parameterType="userOrderVO">
         UPDATE TBL_USER_ORDER SET STATE = '배달완료' WHERE ORDER_NO = #{orderNo}
     </update>
+
 </mapper>

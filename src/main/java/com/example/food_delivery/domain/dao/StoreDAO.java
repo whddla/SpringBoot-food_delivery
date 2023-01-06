@@ -35,6 +35,9 @@ public class StoreDAO {
     public void refuse(String orderNo, String note){
         storeMapper.updateRefuse(orderNo, note);
     }
+    public void cancel(String orderNo, String note){
+        storeMapper.updateCancel(orderNo, note);
+    }
     public void completion(String orderNo){
         storeMapper.updateCompletion(orderNo);
     }

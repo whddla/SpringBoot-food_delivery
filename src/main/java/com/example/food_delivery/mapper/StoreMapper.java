@@ -25,6 +25,8 @@ public interface StoreMapper {
     public void updateReceipt(String orderNo, Integer deliveryTime);
     //주문 거절
     public void updateRefuse(String orderNo, String note);
+    //주문 취소
+    public void updateCancel(String orderNo, String note);
     //주문 완료
     public void updateCompletion(String orderNo);
 }
