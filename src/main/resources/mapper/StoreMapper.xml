@@ -12,7 +12,7 @@
     <!-- 주문 접수 페이지 -->
     <select id="getOrderList" resultType="userOrderVO">
         SELECT * FROM TBL_USER_ORDER WHERE STORE_NAME =
-        (SELECT STORE_NAME FROM STORE WHERE CEO_NO = #{no})
+        (SELECT STORE_NAME FROM STORE WHERE CEO_NO = #{no}) AND STATE = '주문진행' OR STATE = '주문대기'
     </select>
     <!--  주문 메뉴  -->
     <select id="getMenuList" resultMap="mapping_menuList">
