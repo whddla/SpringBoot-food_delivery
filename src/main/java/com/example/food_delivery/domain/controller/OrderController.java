@@ -5,6 +5,7 @@ import com.example.food_delivery.domain.service.StoreService;
 import com.example.food_delivery.domain.vo.MenuVO;
 import com.example.food_delivery.domain.vo.OrderMenuVO;
 import com.example.food_delivery.domain.vo.StoreVO;
+import com.example.food_delivery.domain.vo.UserOrderVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.RandomStringUtils;
@@ -34,6 +35,13 @@ public class OrderController {
         return "user/userOrder";
     }
 
+    @GetMapping("order/Detail/{orderNo}")
+    public String orderDatailPage(UserOrderVO userOrderVO, Model model, MenuVO menuVO){
+        model.addAttribute("order",storeService.getOrder(userOrderVO, userOrderVO.getOrderNo()));
+        model.addAttribute("menu", storeService.menu(menuVO, userOrderVO.getNo()));
+        return "user/orderDetail";
+    }
+
     //주문완료
     @GetMapping("order/wait")
     public String waitPage(){
@@ -42,7 +50,7 @@ public class OrderController {
     }
     @PostMapping("order/success")
     @ResponseBody
-    public Object orderSuccess(@RequestBody HashMap<String, Object> params, OrderMenuVO orderMenuVO) {
+    public Object orderSuccess(@RequestBody HashMap<String, Object> params) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("no", params.get("no"));
         map.put("totalMoney", params.get("money"));
@@ -58,6 +66,7 @@ public class OrderController {
         map.put("orderDate", params.get("orderDate"));
         map.put("menu", params.get("menu"));
         String ran = RandomStringUtils.random(6,true, true);
+        params.get("orderDate");
         map.put("orderNo", ran);
         System.out.println(params.get("menu"));
         orderMenuService.orderHistory(map);
