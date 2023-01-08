@@ -32,11 +32,38 @@
                         </div>
                     </div>
                 </div>
-                <div style="margin-top: 130px;margin-left: 86px;">
-                    <div style="font-size: 20px;margin-top: -30px;">결제 금액 : <strong th:text="${order.totalMoney}+ '원'"></strong></div>
-                    <div style="margin-top: 15px">
-                        <button>리뷰쓰기</button>
-                        <button>가게보기</button>
+                <div th:switch="${order.state}">
+                    <div th:case="주문대기" class="order-state">
+                        <div class="stateDiv">결제 금액 : <strong th:text="${order.totalMoney}+ '원'"></strong></div>
+                        <div style="margin-top: 15px">
+                            <button>주문취소</button>
+                            <button>상세보기</button>
+                            <button>가게보기</button>
+                        </div>
+                    </div>
+                    <div th:case="주문진행" class="order-state">
+                        <div class="stateDiv">결제 금액 : <strong th:text="${order.totalMoney}+ '원'"></strong></div>
+                        <div style="margin-top: 15px">
+                            <button>주문취소</button>
+                            <button>상세보기</button>
+                            <button>가게보기</button>
+                        </div>
+                    </div>
+                    <div th:case="주문거절" class="order-state">
+                        <div class="stateDiv">거절 사유 : <strong th:text="${order.note}"></strong></div>
+                        <div style="margin-top: 15px">
+                            <button>내역삭제</button>
+                            <button>상세보기</button>
+                            <button>가게보기</button>
+                        </div>
+                    </div>
+                    <div th:case="배달완료" class="order-state">
+                        <div class="stateDiv">걸제 금액 : <strong th:text="${order.note}"></strong></div>
+                        <div style="margin-top: 15px">
+                            <button>리뷰쓰기</button>
+                            <button>상세보기</button>
+                            <button>가게보기</button>
+                        </div>
                     </div>
                 </div>
                 <div class="state-wrap">
@@ -44,7 +71,9 @@
                     <strong style="font-size: 22px" th:text="${order.state}"></strong>
                     <div class="state0" th:if="${order.state} == '주문대기'"></div>
                     <div class="state1" th:if="${order.state} == '주문진행'"></div>
-                    <div class="state3" th:if="${order.state} == '주문완료'"></div>
+                    <div class="state2" th:if="${order.state} == '주문거절'"></div>
+                    <div class="state3" th:if="${order.state} == '배달완료'"></div>
+                    <div class="state4" th:if="${order.state} == '주문취소'"></div>
                 </div>
             </div>
         </div>
