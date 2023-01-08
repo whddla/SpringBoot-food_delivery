@@ -1,3 +1,5 @@
+// 주무번호
+const no = document.getElementById("orderNum").innerText
 
 function modal() {
     const modal = document.getElementById("modal")
@@ -44,7 +46,6 @@ menuCount();
 
 // 접수
 function receipt() {
-    var no = document.getElementById("orderNum").innerText
     var delieveryTime = document.getElementsByName('cnt')[0].value;
     var state = '주문대기'
     if(confirm("접수하시겠습니까?")){
@@ -55,7 +56,6 @@ function receipt() {
 }
 // 거부
 function refuse() {
-    var no = document.getElementById("orderNum").innerText;
     document.getElementById("reason").innerText = "주문거부 사유를 선택해주세요.";
     document.getElementById("title").innerText = "주문거부";
     modal();
@@ -63,12 +63,17 @@ function refuse() {
 
 // 완료처리
 function completion() {
-    var no = document.getElementById("orderNum").innerText
+    var delieveryTime = document.getElementsByName('cnt')[0].value;
+    var state = '주문진행'
+    if(confirm("배달 완료 했습니까?")){
+        location.href = `/updateState/`+state+`/`+no;
+    }else{
+        return false;
+    }
 }
 
 // 취소
 function cancel() {
-    var no = document.getElementById("orderNum").innerText
     document.getElementById("reason").innerText = "주문취소 사유를 선택해주세요.";
     document.getElementById("title").innerText = "주문취소";
     modal();
@@ -76,12 +81,11 @@ function cancel() {
 
 
 function requestBtns(e){
-    var orderNo = document.getElementById("orderNum").innerText
     var state = this.document.getElementById("title").innerText
     var reason = e.innerText
     if(state == "주문거부"){
-        location.href = "/order/refuse/" + reason +"/"+ orderNo
+        location.href = "/order/refuse/" + reason +"/"+ no
     }else{
-        location.href = "/order/cancel/" + reason + "/" + orderNo
+        location.href = "/order/cancel/" + reason + "/" + no
     }
 }
