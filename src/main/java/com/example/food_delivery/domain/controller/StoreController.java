@@ -55,31 +55,31 @@ public class StoreController {
         Object[] arr = {menu, order};
         return arr;
     }
-
+    
+    // 주문 접수
     @GetMapping("updateState/{state}/{orderNo}/{deliveryTime}")
     public String orderReceipt(UserOrderVO object){
-        System.out.println(object);
-        System.out.println(object.getOrderNo());
-        if(object.getState().equals("주문대기")){
-            storeService.updateReceipt(object.getOrderNo(),object.getDeliveryTime());
-        }if(object.getState().equals("주문거절")){
-            storeService.updateRefuse(object.getOrderNo(),object.getNote());
-        }if(object.getState().equals("완료처리")){
-            storeService.updateCompletion(object.getOrderNo());
-        }
+        storeService.updateReceipt(object.getOrderNo(),object.getDeliveryTime());
         return "redirect:/store/order";
     }
 
+    // 완료
+    @GetMapping("updateState/{state}/{orderNo}")
+    public String orderCompletion(UserOrderVO object){
+        storeService.updateCompletion(object.getOrderNo());
+        return "redirect:/store/order";
+    }
+
+    // 주문 거부
     @GetMapping("order/refuse/{note}/{orderNo}")
     public String refuse(UserOrderVO object){
-        System.out.println(object);
         storeService.updateRefuse(object.getOrderNo(),object.getNote());
         return "redirect:/store/order";
     }
 
+    // 주문 취소
     @GetMapping("order/cancel/{note}/{orderNo}")
     public String cancel(UserOrderVO object){
-        System.out.println(object);
         storeService.updateCancel(object.getOrderNo(),object.getNote());
         return "redirect:/store/order";
     }
