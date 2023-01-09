@@ -1,5 +1,5 @@
 // 주무번호
-const no = document.getElementById("orderNum").innerText
+const orderNo = document.getElementById("orderNum")
 
 function modal() {
     const modal = document.getElementById("modal")
@@ -48,6 +48,7 @@ menuCount();
 function receipt() {
     var delieveryTime = document.getElementsByName('cnt')[0].value;
     var state = '주문대기'
+    var no =  orderNo.innerText
     if(confirm("접수하시겠습니까?")){
         location.href = `/updateState/`+state+`/`+no+`/`+delieveryTime;
     }else{
@@ -63,10 +64,9 @@ function refuse() {
 
 // 완료처리
 function completion() {
-    var delieveryTime = document.getElementsByName('cnt')[0].value;
-    var state = '주문진행'
+    var no =  orderNo.innerText;
     if(confirm("배달 완료 했습니까?")){
-        location.href = `/updateState/`+state+`/`+no;
+        location.href = `/updateState`/+no;
     }else{
         return false;
     }
@@ -83,6 +83,7 @@ function cancel() {
 function requestBtns(e){
     var state = this.document.getElementById("title").innerText
     var reason = e.innerText
+    var no =  orderNo.innerText
     if(state == "주문거부"){
         location.href = "/order/refuse/" + reason +"/"+ no
     }else{
