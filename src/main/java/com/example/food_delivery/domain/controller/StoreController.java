@@ -64,7 +64,7 @@ public class StoreController {
     }
 
     // 완료
-    @GetMapping("updateState/{state}/{orderNo}")
+    @GetMapping("updateState/{orderNo}")
     public String orderCompletion(UserOrderVO object){
         storeService.updateCompletion(object.getOrderNo());
         return "redirect:/store/order";
