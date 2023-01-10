@@ -106,7 +106,7 @@ public class UserController {
 
     //주문내역
     @GetMapping("myOrder")
-    public String myOrderPage(HttpServletRequest request,Model model,OrderMenuVO orderMenuVO, UserOrderVO userOrderVO){
+    public String myOrderPage(HttpServletRequest request,Model model,OrderMenuVO orderMenuVO, UserOrderVO userOrderVO,StoreVO storeVO){
         HttpSession session = request.getSession();
         UserVO user = (UserVO) session.getAttribute(SessionConstants.LOGIN_USER);
         System.out.println(session);
