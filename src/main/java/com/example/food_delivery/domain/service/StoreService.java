@@ -13,7 +13,13 @@ public interface StoreService {
     
     // 카테고리 별 가게
     public StoreVO cate(Integer no, StoreVO storeVO);
-    
+
+    // 전체 가게
+    public List<StoreVO> getStoreList();
+
+    // 가게 이름으로 가게정보
+    public StoreVO getStoreName(StoreVO storeVO, String storeName);
+
     // 전체 메뉴
     public List<MenuVO> menu(MenuVO menuVO, Integer no);
 
