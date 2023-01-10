@@ -85,3 +85,15 @@ img {
     font-size: 20px;
     margin-top: -30px;
 }
+
+.order-state button{
+    cursor: pointer;
+}
+
+.input-file-button{
+    padding: 6px 25px;
+    background-color:#FF6600;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
