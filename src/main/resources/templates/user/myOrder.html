@@ -7,6 +7,7 @@
     <title>index</title>
     <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
     <link rel="stylesheet" th:href="@{/css/user/myOrder.css}">
+    <link rel="stylesheet" th:href="@{/css/store/modal.css}">
     <!-- content script -->
     <th:block layout:fragment="css">
         <link rel="stylesheet" th:href="@{/css/layout/header.css}">
@@ -37,32 +38,40 @@
                         <div class="stateDiv">결제 금액 : <strong th:text="${order.totalMoney}+ '원'"></strong></div>
                         <div style="margin-top: 15px">
                             <button>주문취소</button>
-                            <button>상세보기</button>
-                            <button>가게보기</button>
+                            <button th:orderNo="${order.orderNo}"
+                                    th:onclick="orderDetail(this.getAttribute('orderNo'))">상세보기</button>
+                            <button th:storeName="${order.storeName}"
+                                    th:onclick="showStore(this.getAttribute('storeName'))">가게보기</button>
                         </div>
                     </div>
                     <div th:case="주문진행" class="order-state">
                         <div class="stateDiv">결제 금액 : <strong th:text="${order.totalMoney}+ '원'"></strong></div>
                         <div style="margin-top: 15px">
                             <button>주문취소</button>
-                            <button>상세보기</button>
-                            <button>가게보기</button>
+                            <button th:orderNo="${order.orderNo}"
+                                    th:onclick="orderDetail(this.getAttribute('orderNo'))">상세보기</button>
+                            <button th:storeName="${order.storeName}"
+                                    th:onclick="showStore(this.getAttribute('storeName'))">가게보기</button>
                         </div>
                     </div>
                     <div th:case="주문거절" class="order-state">
                         <div class="stateDiv">거절 사유 : <strong th:text="${order.note}"></strong></div>
                         <div style="margin-top: 15px">
                             <button>내역삭제</button>
-                            <button>상세보기</button>
-                            <button>가게보기</button>
+                            <button th:orderNo="${order.orderNo}"
+                                    th:onclick="orderDetail(this.getAttribute('orderNo'))">상세보기</button>
+                            <button th:storeName="${order.storeName}"
+                                    th:onclick="showStore(this.getAttribute('storeName'))">가게보기</button>
                         </div>
                     </div>
                     <div th:case="배달완료" class="order-state">
-                        <div class="stateDiv">걸제 금액 : <strong th:text="${order.note}"></strong></div>
+                        <div class="stateDiv">걸제 금액 : <strong th:text="${order.totalMoney}+'원'"></strong></div>
                         <div style="margin-top: 15px">
                             <button>리뷰쓰기</button>
-                            <button>상세보기</button>
-                            <button>가게보기</button>
+                            <button th:orderNo="${order.orderNo}"
+                                    th:onclick="orderDetail(this.getAttribute('orderNo'))">상세보기</button>
+                            <button th:storeName="${order.storeName}"
+                                    th:onclick="showStore(this.getAttribute('storeName'))">가게보기</button>
                         </div>
                     </div>
                 </div>
@@ -78,5 +87,20 @@
             </div>
         </div>
     </div>
+    <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="title">
+                <h2 id="title">리뷰쓰기</h2>
+            </div>
+            <div class="close-area" onclick="">X</div>
+            <div class="content">
+                <input style="display: block;" type="file" id="inputMultipleImage" multiple>
+                <div id="multipleContainer"></div>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
 </body>
+<script th:src="@{/js/store/order.js}"></script>
+<script th:src="@{/js/fileUpload.js}"></script>
 </html>
