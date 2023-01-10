@@ -99,3 +99,17 @@ main .total div {
 main .address li {
     color: #a5a5a5;
 }
+
+main .backBtn{
+    margin-top: 100px;
+    text-align: center;
+}
+
+main .backBtn button{
+    height: 60px;
+    background: #e6e4e4;
+    border: 0;
+    width: 95%;
+    margin-left: auto;
+    cursor: pointer;
+}
