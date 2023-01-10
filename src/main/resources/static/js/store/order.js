@@ -1,5 +1,5 @@
 // 주무번호
-const orderNo = document.getElementById("orderNum")
+const orderNumDiv = document.getElementById("orderNum")
 
 function modal() {
     const modal = document.getElementById("modal")
@@ -48,7 +48,7 @@ menuCount();
 function receipt() {
     var delieveryTime = document.getElementsByName('cnt')[0].value;
     var state = '주문대기'
-    var no =  orderNo.innerText
+    var no =  orderNumDiv.innerText
     if(confirm("접수하시겠습니까?")){
         location.href = `/updateState/`+state+`/`+no+`/`+delieveryTime;
     }else{
@@ -64,9 +64,9 @@ function refuse() {
 
 // 완료처리
 function completion() {
-    var no =  orderNo.innerText;
+    var no =  orderNumDiv.innerText;
     if(confirm("배달 완료 했습니까?")){
-        location.href = `/updateState`/+no;
+        location.href = `/order/completion/`+no;
     }else{
         return false;
     }
@@ -83,10 +83,20 @@ function cancel() {
 function requestBtns(e){
     var state = this.document.getElementById("title").innerText
     var reason = e.innerText
-    var no =  orderNo.innerText
+    var no =  orderNumDiv.innerText
     if(state == "주문거부"){
         location.href = "/order/refuse/" + reason +"/"+ no
     }else{
         location.href = "/order/cancel/" + reason + "/" + no
     }
+}
+
+// 가게보기
+function showStore(storeName) {
+    location.href = '/order/'+storeName;
+}
+
+//주문상세정보
+function orderDetail(orderNo) {
+    location.href = '/order/Detail/'+orderNo;
 }
