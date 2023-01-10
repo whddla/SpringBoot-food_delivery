@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.model.IModel;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,6 +26,16 @@ public class StoreController {
     public String catePage(Model model, Integer no, StoreVO storeVO){
         model.addAttribute("cate",storeService.cate(no,storeVO));
         return "/cate";
+    }
+    
+    //가게 이름으로 가게정보
+    @GetMapping("order/{storeName}")
+    public String storePage(StoreVO storeVO,MenuVO menuVO,  Model model){
+        System.out.println(storeVO);
+        Integer no = storeService.getStoreName(storeVO,storeVO.getStoreName()).getNo();
+        model.addAttribute("store",storeService.getStoreName(storeVO,storeVO.getStoreName()));
+        model.addAttribute("menu",storeService.menu(menuVO,no));
+        return "user/userOrder";
     }
 
     @GetMapping("store/manage")
@@ -55,7 +66,7 @@ public class StoreController {
         Object[] arr = {menu, order};
         return arr;
     }
-    
+
     // 주문 접수
     @GetMapping("updateState/{state}/{orderNo}/{deliveryTime}")
     public String orderReceipt(UserOrderVO object){
@@ -64,8 +75,9 @@ public class StoreController {
     }
 
     // 완료
-    @GetMapping("updateState/{orderNo}")
+    @GetMapping("order/completion/{orderNo}")
     public String orderCompletion(UserOrderVO object){
+        System.out.println(object.getOrderNo());
         storeService.updateCompletion(object.getOrderNo());
         return "redirect:/store/order";
     }
