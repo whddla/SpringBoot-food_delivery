@@ -35,10 +35,11 @@ public class OrderController {
         return "user/userOrder";
     }
 
+
     @GetMapping("order/Detail/{orderNo}")
-    public String orderDatailPage(UserOrderVO userOrderVO, Model model, MenuVO menuVO){
+    public String orderDatailPage(UserOrderVO userOrderVO,OrderMenuVO orderMenuVO,Model model){
         model.addAttribute("order",storeService.getOrder(userOrderVO, userOrderVO.getOrderNo()));
-        model.addAttribute("menu", storeService.menu(menuVO, userOrderVO.getNo()));
+        model.addAttribute("menu", storeService.getMenu(orderMenuVO, userOrderVO.getOrderNo()));
         return "user/orderDetail";
     }
 
