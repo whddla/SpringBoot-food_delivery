@@ -26,6 +26,16 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    public List<StoreVO> getStoreList() {
+        return storeDAO.getStoreList();
+    }
+
+    @Override
+    public StoreVO getStoreName(StoreVO storeVO, String storeName) {
+        return storeDAO.getStoreName(storeVO,storeName);
+    }
+
+    @Override
     public List<MenuVO> menu(MenuVO menuVO, Integer no) {
         return storeDAO.menu(menuVO, no);
     }
