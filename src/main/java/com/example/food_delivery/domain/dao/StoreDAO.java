@@ -20,6 +20,15 @@ public class StoreDAO {
     public StoreVO cate(Integer no, StoreVO storeVO){
         return storeMapper.cate(no,storeVO);
     }
+
+    public List<StoreVO> getStoreList(){
+        return storeMapper.getStoreList();
+    }
+
+    public StoreVO getStoreName(StoreVO storeVO, String storeName){
+        return storeMapper.getStoreName(storeVO, storeName);
+    }
+
     public List<MenuVO> menu(MenuVO menuVO, Integer no){
         return menuMapper.menu(menuVO, no);
     }
