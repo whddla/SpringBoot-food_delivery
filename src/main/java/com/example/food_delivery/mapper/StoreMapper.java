@@ -14,6 +14,11 @@ public interface StoreMapper {
     //카테고리
     public StoreVO cate(Integer no ,StoreVO storeVO);
 
+    // 전체 가게
+    public List<StoreVO> getStoreList();
+    // 가게 이름으로 가게 정보
+    public StoreVO getStoreName(StoreVO storeVO,String storeName);
+
     //주문화면
     public StoreVO order(StoreVO storeVO,Integer no);
     public UserOrderVO getOrder(UserOrderVO userOrderVO, String orderNo);
