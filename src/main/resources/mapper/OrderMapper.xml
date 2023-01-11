@@ -21,4 +21,12 @@
     <select id="menuAllList" resultType="orderMenuVO">
         SELECT * FROM ORDER_MENU WHERE USER_NO = #{no}
     </select>
+
+    <delete id="deleteOrder">
+        DELETE * FROM TBL_USER_ORDER WHERE ORDER_NO = #{orderNo}
+    </delete>
+    <delete id="deleteMenu">
+        DELETE * FROM ORDER_MENU WHERE ORDER_NO = #{orderNo}
+    </delete>
+
 </mapper>
