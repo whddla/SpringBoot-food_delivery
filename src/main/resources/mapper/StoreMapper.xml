@@ -17,10 +17,15 @@
     <select id="order" resultType="storeVO">
         SELECT * FROM STORE WHERE NO = #{no}
     </select>
+    <!--  메뉴 관리  -->
+    <select id="manageMenu" resultType="menuVO">
+        SELECT * FROM MENU WHERE STORE_NO =
+        (SELECT NO FROM STORE WHERE CEO_NO = (SELECT NO FROM TBL_USER WHERE NO = #{no}))
+    </select>
     <!-- 주문 접수 페이지 -->
     <select id="getOrderList" resultType="userOrderVO">
         SELECT * FROM TBL_USER_ORDER WHERE STORE_NAME =
-        (SELECT STORE_NAME FROM STORE WHERE CEO_NO = #{no}) AND STATE = '주문진행' OR STATE = '주문대기'
+        (SELECT STORE_NAME FROM STORE WHERE CEO_NO = #{no}) AND STATE = '주문진행' OR STATE = '주문대기' OR STATE ='고객요청'
     </select>
     <!--  주문 메뉴  -->
     <select id="getMenuList" resultMap="mapping_menuList">

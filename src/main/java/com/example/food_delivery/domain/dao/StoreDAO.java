@@ -24,6 +24,9 @@ public class StoreDAO {
     public List<StoreVO> getStoreList(){
         return storeMapper.getStoreList();
     }
+    public List<MenuVO> manageMenu(MenuVO menuVO, Integer no){
+        return storeMapper.manageMenu(menuVO, no);
+    }
 
     public StoreVO getStoreName(StoreVO storeVO, String storeName){
         return storeMapper.getStoreName(storeVO, storeName);

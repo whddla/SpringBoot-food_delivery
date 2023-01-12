@@ -41,6 +41,11 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    public List<MenuVO> manageMenu(MenuVO menuVO, Integer no) {
+        return storeDAO.manageMenu(menuVO, no);
+    }
+
+    @Override
     public StoreVO order(StoreVO storeVO, Integer no) {return storeDAO.order(storeVO, no);}
 
     @Override

@@ -19,6 +19,7 @@ public interface StoreService {
 
     // 가게 이름으로 가게정보
     public StoreVO getStoreName(StoreVO storeVO, String storeName);
+    public List<MenuVO> manageMenu(MenuVO menuVO, Integer no);
 
     // 전체 메뉴
     public List<MenuVO> menu(MenuVO menuVO, Integer no);

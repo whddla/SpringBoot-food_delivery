@@ -1,6 +1,7 @@
 package com.example.food_delivery.mapper;
 
 
+import com.example.food_delivery.domain.vo.MenuVO;
 import com.example.food_delivery.domain.vo.OrderMenuVO;
 import com.example.food_delivery.domain.vo.StoreVO;
 import com.example.food_delivery.domain.vo.UserOrderVO;
@@ -16,6 +17,10 @@ public interface StoreMapper {
 
     // 전체 가게
     public List<StoreVO> getStoreList();
+
+    // 가게 메뉴 관리
+    public List<MenuVO> manageMenu(MenuVO menuVO, Integer no);
+
     // 가게 이름으로 가게 정보
     public StoreVO getStoreName(StoreVO storeVO,String storeName);
 

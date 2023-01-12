@@ -38,8 +38,21 @@ public class StoreController {
         return "user/userOrder";
     }
 
+    @GetMapping("store/menu")
+    public String menuPage(HttpServletRequest request, Model model, MenuVO menuVO){
+        HttpSession session = request.getSession();
+        UserVO user = (UserVO) session.getAttribute(SessionConstants.LOGIN_USER);
+        Integer no = user.getNo();
+        model.addAttribute("menu",storeService.manageMenu(menuVO, no));
+        return "store/menu";
+    }
+
     @GetMapping("store/manage")
-    public String managePage(){
+    public String managePage(HttpServletRequest request, Model model, MenuVO menuVO){
+        HttpSession session = request.getSession();
+        UserVO user = (UserVO) session.getAttribute(SessionConstants.LOGIN_USER);
+        Integer no = user.getNo();
+        model.addAttribute("menu",storeService.manageMenu(menuVO, no));
         return "store/manage";
     }
 
