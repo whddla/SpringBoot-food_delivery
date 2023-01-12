@@ -100,3 +100,8 @@ function showStore(storeName) {
 function orderDetail(orderNo) {
     location.href = '/order/Detail/'+orderNo;
 }
+
+// 유저의 주문취소 요청
+function orderCancel(orderNo) {
+    location.href = '/order/cancel'
+}
