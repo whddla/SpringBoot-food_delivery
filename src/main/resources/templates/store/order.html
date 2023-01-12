@@ -24,6 +24,7 @@
         <div class="manage">
             <div class="top-menu">
                 <button><a href="/store/order">주문접수</a></button>
+                <button><a href="/store/menu">메뉴관리</a></button>
                 <button><a href="/store/manage">매장관리</a></button>
             </div>
             <div style="display: flex;">
@@ -53,6 +54,16 @@
                                 <div th:id="${order.orderNo}" th:if="${menu.orderNo}==${order.orderNo}">
                                     <span id="menuCount"></span>
                                     <div class="ing" th:text="${order.deliveryTime}+분"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${order.state == '고객요청'}" th:orderNo="${order.orderNo}"
+                             th:onclick="orderNo(this.getAttribute('orderNo'))" style="cursor: pointer;">
+                            <strong>주문번호 <strong th:text="${order.orderNo}"></strong></strong><br>
+                            <div th:each="menu:${menu}">
+                                <div th:id="${order.orderNo}" th:if="${menu.orderNo}==${order.orderNo}">
+                                    <span id="menuCount"></span>
+                                    <div class="ing" style="color:red;">취소요청</div>
                                 </div>
                             </div>
                         </div>
