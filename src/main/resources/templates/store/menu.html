@@ -23,7 +23,7 @@
         <div class="manage">
             <div class="top-menu">
                 <button><a href="/store/order">주문접수</a></button>
-                <button><a href="/store/menu">메뉴관리</a></button> 
+                <button><a href="/store/menu">메뉴관리</a></button>
                 <button><a href="/store/manage">매장관리</a></button>
             </div>
             <div style="display: flex;">
@@ -43,8 +43,8 @@
                             <td><input style="width: 100px;border: none;background-color: white;" disabled type="text" name="" th:value="${menu.foodName}"></td>
                             <td><input style="width: 100px;border: none;background-color: white;" disabled type="text" name="" th:value="${menu.price}+'원'"></td>
                             <td>
-                                <button>수정</button>
-                                <button>삭제</button>
+                                <button onclick="update()">수정</button>
+                                <button onclick="delete()">삭제</button>
                             </td>
                         </tr>
                     </table>
