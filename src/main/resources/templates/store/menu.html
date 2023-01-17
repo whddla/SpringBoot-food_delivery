@@ -29,7 +29,7 @@
             <div style="display: flex;">
                 <div class="update">
                     <div>메뉴 관리</div>
-                    <table style="text-align-last: center;">
+                    <table id="menuList" style="text-align-last: center;">
                         <thead>
                             <tr>
                                 <td>메뉴</td>
@@ -38,13 +38,13 @@
                                 <td>관리</td>
                             </tr>
                         </thead>
-                        <tr th:each="menu:${menu}">
+                        <tr th:each="menu:${menu}" th:id="${menu.no}">
                             <td><img th:src="${menu.img}" style="width: 100px;height: 100px;" alt=""></td>
                             <td><input style="width: 100px;border: none;background-color: white;" disabled type="text" name="" th:value="${menu.foodName}"></td>
                             <td><input style="width: 100px;border: none;background-color: white;" disabled type="text" name="" th:value="${menu.price}+'원'"></td>
                             <td>
-                                <button onclick="update()">수정</button>
-                                <button onclick="delete()">삭제</button>
+                                <button th:no="${menu.no}" th:onclick="updateMenu(this.getAttribute('no'))">수정</button>
+                                <button onclick="deleteMenu(this)">삭제</button>
                             </td>
                         </tr>
                     </table>
