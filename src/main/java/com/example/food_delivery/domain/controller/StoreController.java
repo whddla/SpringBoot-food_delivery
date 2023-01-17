@@ -13,6 +13,8 @@ import org.thymeleaf.model.IModel;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -108,4 +110,28 @@ public class StoreController {
         storeService.updateCancel(object.getOrderNo(),object.getNote());
         return "redirect:/store/order";
     }
+    @ResponseBody
+    @RequestMapping(value = "/updateMenu")
+    public Map<String, Object> updateMenu(@RequestBody MenuVO menuVO, Model model){
+        System.out.println(menuVO.getNo());
+        Map<String, Object> result = new HashMap<>();
+        System.out.println("들어옴");
+        try {
+            result.put("no",storeService.selectMenu(menuVO.getNo()).getNo());
+            result.put("foodName",storeService.selectMenu(menuVO.getNo()).getFoodName());
+            result.put("price",storeService.selectMenu(menuVO.getNo()).getPrice());
+            result.put("img",storeService.selectMenu(menuVO.getNo()).getImg());
+            result.put("status", "OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("status", "False");
+        }
+        return result;
+    }
+
+//    @ResponseBody
+//    @RequestMapping(value = "/menuUpdate/{no}/{foodName}/{price}/{img}")
+//    void saveMenu(@RequestBody MenuVO menuVO){
+//        storeService.menuUpdate(menuVO,menuVO.getNo(),menuVO.getFoodName(),menuVO.getPrice(),menuVO.getImg());
+//    }
 }
