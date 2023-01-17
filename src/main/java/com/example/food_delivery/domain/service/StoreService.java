@@ -23,6 +23,10 @@ public interface StoreService {
 
     // 전체 메뉴
     public List<MenuVO> menu(MenuVO menuVO, Integer no);
+    // 메뉴 1개
+    public MenuVO selectMenu(Integer no);
+    // 메뉴 수정
+    public MenuVO menuUpdate(MenuVO menuVO, Integer no, String foodName, Integer price, String img);
 
     // 주문 화면 가게
     public StoreVO order(StoreVO storeVO, Integer no);

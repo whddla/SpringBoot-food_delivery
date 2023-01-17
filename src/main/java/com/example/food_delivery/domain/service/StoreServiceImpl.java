@@ -39,6 +39,15 @@ public class StoreServiceImpl implements StoreService {
     public List<MenuVO> menu(MenuVO menuVO, Integer no) {
         return storeDAO.menu(menuVO, no);
     }
+    @Override
+    public MenuVO selectMenu(Integer no) {
+        return storeDAO.selectMenu(no);
+    }
+
+    @Override
+    public MenuVO menuUpdate(MenuVO menuVO, Integer no, String foodName, Integer price, String img) {
+        return storeDAO.menuUpdate(menuVO, no, foodName, price, img);
+    }
 
     @Override
     public List<MenuVO> manageMenu(MenuVO menuVO, Integer no) {
