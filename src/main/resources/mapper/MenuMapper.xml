@@ -4,4 +4,12 @@
     <select id="menu" resultType="menuVO">
         SELECT * FROM MENU WHERE STORE_NO = #{no}
     </select>
+    <select id="selectMenu" resultType="menuVO">
+        SELECT * FROM MENU WHERE NO = #{no}
+    </select>
+
+    <update id="menuUpdate">
+        UPDATE MENU SET FOOD_NAME = #{foodName}, PRICE = #{price} , IMG = #{img}
+        WHERE NO = #{no}
+    </update>
 </mapper>
