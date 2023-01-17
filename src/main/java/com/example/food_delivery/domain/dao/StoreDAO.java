@@ -35,6 +35,13 @@ public class StoreDAO {
     public List<MenuVO> menu(MenuVO menuVO, Integer no){
         return menuMapper.menu(menuVO, no);
     }
+    public MenuVO selectMenu(Integer no){
+        return menuMapper.selectMenu(no);
+    }
+    public MenuVO menuUpdate(MenuVO menuVO, Integer no, String foodName, Integer price, String img){
+        return menuMapper.menuUpdate(menuVO,no,foodName, price,img);
+    }
+
     public StoreVO order(StoreVO storeVO, Integer no){ return storeMapper.order(storeVO, no); }
     public UserOrderVO getOrder(UserOrderVO userOrderVO, String orderNo){ return storeMapper.getOrder(userOrderVO, orderNo); }
     public List<OrderMenuVO> getMenu(OrderMenuVO orderMenuVO, String orderNo){ return storeMapper.getMenu(orderMenuVO, orderNo); }
