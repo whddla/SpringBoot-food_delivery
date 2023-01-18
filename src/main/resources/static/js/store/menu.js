@@ -12,8 +12,31 @@
 //     menuList[2].children[0].value.replace("원",'')
 // }
 
-function showMenuList() {
-
+function showMenuList(no) {
+    var json = {"no":no}
+    $.ajax({
+        url:"/updateMenu",
+        type:"POST",
+        data:JSON.stringify(json),
+        dataType:'json',
+        contentType: "application/json; charset=UTF-8",
+        success: function (result) {
+            console.log(result)
+            var htmls = ""
+            htmls = `<tr>
+                <td><img style="width: 100px;height: 100px;" src="`+result.img+`"></td>
+                <td><input style="width: 100px;border: none;background-color: white;" disabled type="text" name="" value="`+result.foodName+`"></td>
+                <td><input style="width: 100px;border: none;background-color: white;" disabled type="text" name="" value="`+result.price.toLocaleString()+'원'`"></td>
+                <td>
+                    <button onclick="updateMenu(`+result.no+`)">수정</button>
+                    <button onclick="deleteMenu(`+result.no+`)">삭제</button>
+                </td>
+             </tr>`
+            $("#"+no)[0].innerHTML = htmls;
+        }, error: function(error){
+            console.log("에러 : " + error);
+        }
+    })
 }
 
 function updateMenu(no) {
