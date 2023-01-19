@@ -25,10 +25,8 @@
                 </ul>
             </div>
             <div class='login' th:if="${session.loginUser!=null}">
+                <div id="userNo" style="display: none;" th:text="${session.loginUser.getNo()}"></div>
                 <ul>
-                    <li>
-                        <div id="userNo" style="display: none;" th:text="${session.loginUser.getNo()}"></div>
-                    </li>
                     <li>
                         <a href="/logout">로그아웃</a>
                     </li>
