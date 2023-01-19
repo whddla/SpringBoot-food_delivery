@@ -11,4 +11,5 @@ public interface MenuMapper {
     public List<MenuVO> menu(MenuVO menuVO, Integer no);
     public MenuVO selectMenu(Integer no);
     public MenuVO menuUpdate(MenuVO menuVO, Integer no, String foodName, Integer price, String img);
+    public void deleteMenu(Integer no);
 }

@@ -12,4 +12,8 @@
         UPDATE MENU SET FOOD_NAME = #{foodName}, PRICE = #{price} , IMG = #{img}
         WHERE NO = #{no}
     </update>
+
+    <delete id="deleteMenu">
+        DELETE FROM MENU WHERE NO = #{no}
+    </delete>
 </mapper>
