@@ -28,7 +28,6 @@
             </div>
             <div style="display: flex;">
                 <div class="update">
-                    <div>메뉴 관리</div>
                     <table id="menuList" style="text-align-last: center;">
                         <thead>
                             <tr>
@@ -39,9 +38,9 @@
                             </tr>
                         </thead>
                         <tr th:each="menu:${menu}" th:id="${menu.no}">
-                            <td><img th:src="${menu.img}" style="width: 100px;height: 100px;" alt=""></td>
-                            <td><input style="width: 100px;border: none;background-color: white;" disabled type="text" name="" th:value="${menu.foodName}"></td>
-                            <td><input style="width: 100px;border: none;background-color: white;" disabled type="text" name="" th:value="${menu.price}+'원'"></td>
+                            <td><img th:id="'img'+${menu.no}" th:src="${menu.img}" style="width: 100px;height: 100px;" alt=""></td>
+                            <td><input th:id="'fn'+${menu.no}" style="width: 150px;border: none;background-color: white;" disabled type="text" name="" th:value="${menu.foodName}"></td>
+                            <td><input th:id="'price'+${menu.no}" style="width: 150px;border: none;background-color: white;" disabled type="text" name="" th:value="${#numbers.formatInteger(menu.price, 0, 'COMMA')+'원'}"></td>
                             <td>
                                 <button th:no="${menu.no}" th:onclick="updateMenu(this.getAttribute('no'))">수정</button>
                                 <button onclick="deleteMenu(this)">삭제</button>
