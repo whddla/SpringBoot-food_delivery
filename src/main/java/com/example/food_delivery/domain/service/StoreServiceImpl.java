@@ -48,6 +48,10 @@ public class StoreServiceImpl implements StoreService {
     public MenuVO menuUpdate(MenuVO menuVO, Integer no, String foodName, Integer price, String img) {
         return storeDAO.menuUpdate(menuVO, no, foodName, price, img);
     }
+    @Override
+    public void deleteMenu(Integer no) {
+        storeDAO.deleteMenu(no);
+    }
 
     @Override
     public List<MenuVO> manageMenu(MenuVO menuVO, Integer no) {

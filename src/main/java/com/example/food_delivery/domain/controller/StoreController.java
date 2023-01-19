@@ -112,7 +112,7 @@ public class StoreController {
     }
     @ResponseBody
     @RequestMapping(value = "/updateMenu")
-    public Map<String, Object> updateMenu(@RequestBody MenuVO menuVO, Model model){
+    public Map<String, Object> updateMenu(@RequestBody MenuVO menuVO){
         System.out.println(menuVO.getNo());
         Map<String, Object> result = new HashMap<>();
         System.out.println("들어옴");
@@ -129,9 +129,17 @@ public class StoreController {
         return result;
     }
 
-//    @ResponseBody
-//    @RequestMapping(value = "/menuUpdate/{no}/{foodName}/{price}/{img}")
-//    void saveMenu(@RequestBody MenuVO menuVO){
-//        storeService.menuUpdate(menuVO,menuVO.getNo(),menuVO.getFoodName(),menuVO.getPrice(),menuVO.getImg());
-//    }
+    @ResponseBody
+    @RequestMapping(value = "/saveMenu")
+    public void saveMenu(@RequestBody MenuVO menuVO){
+        System.out.println(menuVO.getImg());
+        storeService.menuUpdate(menuVO,menuVO.getNo(),menuVO.getFoodName(),menuVO.getPrice(),menuVO.getImg());
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/deleteMenu")
+    public void deleteMenu(@RequestBody MenuVO menuVO){
+        storeService.deleteMenu(menuVO.getNo());
+    }
+
 }

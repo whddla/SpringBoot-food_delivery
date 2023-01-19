@@ -27,6 +27,7 @@ public interface StoreService {
     public MenuVO selectMenu(Integer no);
     // 메뉴 수정
     public MenuVO menuUpdate(MenuVO menuVO, Integer no, String foodName, Integer price, String img);
+    public void deleteMenu(Integer no);
 
     // 주문 화면 가게
     public StoreVO order(StoreVO storeVO, Integer no);

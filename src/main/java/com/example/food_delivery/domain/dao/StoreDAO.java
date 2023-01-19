@@ -41,6 +41,9 @@ public class StoreDAO {
     public MenuVO menuUpdate(MenuVO menuVO, Integer no, String foodName, Integer price, String img){
         return menuMapper.menuUpdate(menuVO,no,foodName, price,img);
     }
+    public void deleteMenu(Integer no){
+        menuMapper.deleteMenu(no);
+    }
 
     public StoreVO order(StoreVO storeVO, Integer no){ return storeMapper.order(storeVO, no); }
     public UserOrderVO getOrder(UserOrderVO userOrderVO, String orderNo){ return storeMapper.getOrder(userOrderVO, orderNo); }
