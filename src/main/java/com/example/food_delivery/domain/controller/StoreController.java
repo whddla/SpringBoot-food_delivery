@@ -13,6 +13,7 @@ import org.thymeleaf.model.IModel;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -113,9 +114,7 @@ public class StoreController {
     @ResponseBody
     @RequestMapping(value = "/updateMenu")
     public Map<String, Object> updateMenu(@RequestBody MenuVO menuVO){
-        System.out.println(menuVO.getNo());
         Map<String, Object> result = new HashMap<>();
-        System.out.println("들어옴");
         try {
             result.put("no",storeService.selectMenu(menuVO.getNo()).getNo());
             result.put("foodName",storeService.selectMenu(menuVO.getNo()).getFoodName());
@@ -132,8 +131,17 @@ public class StoreController {
     @ResponseBody
     @RequestMapping(value = "/saveMenu")
     public void saveMenu(@RequestBody MenuVO menuVO){
-        System.out.println(menuVO.getImg());
-        storeService.menuUpdate(menuVO,menuVO.getNo(),menuVO.getFoodName(),menuVO.getPrice(),menuVO.getImg());
+        int idx = menuVO.getImg().lastIndexOf("/");
+        String fileDirectory = menuVO.getImg().substring(0,idx);
+
+        File file = new File("C:\\food_delivery-Spiring-boot-\\workspace\\SpringBoot-food_delivery\\src\\main\\resources\\static"+fileDirectory);
+
+        if(!file.isDirectory()){
+
+        }else{
+
+        }
+//        storeService.menuUpdate(menuVO,menuVO.getNo(),menuVO.getFoodName(),menuVO.getPrice(),menuVO.getImg());
     }
 
     @ResponseBody
