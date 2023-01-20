@@ -4,6 +4,7 @@ var idx =  decodeUri.indexOf("d/")
 decodeUri = decodeUri.substring(idx+2)
 var storeName = decodeUri.substring(0,decodeUri.indexOf("/"))
 
+
 function showMenuList(no) {
     var json = {"no":no}
     $.ajax({
@@ -72,7 +73,7 @@ function updateMenu(no) {
 
 function saveMenu(no) {
     console.log(storeName)
-    var imgUri = "/img/food"+storeName+"/"+document.getElementById("fn"+no).value +".jpg"
+    var imgUri = "/img/food/"+storeName+"/"+document.getElementById("fn"+no).value +".jpg"
     var json = {
         "no" : no,
         "img": imgUri,
@@ -89,7 +90,7 @@ function saveMenu(no) {
             dataType:'json',
             contentType: "application/json; charset=UTF-8",
             success: function (result) {
-                  console.log(result)
+                  showMenuList(no)
             },error: function (err) {
                 console.log(err)
             }
