@@ -38,8 +38,8 @@ public class StoreDAO {
     public MenuVO selectMenu(Integer no){
         return menuMapper.selectMenu(no);
     }
-    public MenuVO menuUpdate(MenuVO menuVO, Integer no, String foodName, Integer price, String img){
-        return menuMapper.menuUpdate(menuVO,no,foodName, price,img);
+    public void menuUpdate(MenuVO menuVO, Integer no, String foodName, Integer price){
+        menuMapper.menuUpdate(menuVO,no,foodName, price);
     }
     public void deleteMenu(Integer no){
         menuMapper.deleteMenu(no);
