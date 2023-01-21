@@ -10,6 +10,6 @@ import java.util.List;
 public interface MenuMapper {
     public List<MenuVO> menu(MenuVO menuVO, Integer no);
     public MenuVO selectMenu(Integer no);
-    public MenuVO menuUpdate(MenuVO menuVO, Integer no, String foodName, Integer price, String img);
+    public void menuUpdate(MenuVO menuVO, Integer no, String foodName, Integer price);
     public void deleteMenu(Integer no);
 }
