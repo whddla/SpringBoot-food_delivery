@@ -9,11 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.model.IModel;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -131,17 +129,7 @@ public class StoreController {
     @ResponseBody
     @RequestMapping(value = "/saveMenu")
     public void saveMenu(@RequestBody MenuVO menuVO){
-        int idx = menuVO.getImg().lastIndexOf("/");
-        String fileDirectory = menuVO.getImg().substring(0,idx);
-
-        File file = new File("C:\\food_delivery-Spiring-boot-\\workspace\\SpringBoot-food_delivery\\src\\main\\resources\\static"+fileDirectory);
-
-        if(!file.isDirectory()){
-
-        }else{
-
-        }
-//        storeService.menuUpdate(menuVO,menuVO.getNo(),menuVO.getFoodName(),menuVO.getPrice(),menuVO.getImg());
+        storeService.menuUpdate(menuVO, menuVO.getNo(), menuVO.getFoodName(), menuVO.getPrice());
     }
 
     @ResponseBody
