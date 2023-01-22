@@ -94,3 +94,6 @@ function deleteMenu(no){
 }
 
 
+function addMenu() {
+    console.log(document.getElementById("menuList"))
+}
