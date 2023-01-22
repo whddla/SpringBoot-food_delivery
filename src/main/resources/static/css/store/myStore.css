@@ -109,6 +109,7 @@ body{
 }
 
 .manage{
+    max-height: 700px;
     min-height: 700px;
     background: white;
     box-shadow: 5px 5px 5px 5px lightgrey;
