@@ -138,4 +138,10 @@ public class StoreController {
         storeService.deleteMenu(menuVO.getNo());
     }
 
+    @PostMapping("/uploadMenu")
+    public String uploadMenu(){
+
+        return "/store/menu";
+    }
+
 }
