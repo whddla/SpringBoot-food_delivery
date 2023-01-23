@@ -37,15 +37,17 @@
                                 <td>관리</td>
                             </tr>
                         </thead>
-                        <tr th:each="menu:${menu}" th:id="${menu.no}">
-                            <td><img th:id="'img'+${menu.no}" th:src="${menu.img}" style="width: 100px;height: 100px;" alt=""></td>
-                            <td><input th:id="'fn'+${menu.no}" style="width: 150px;border: none;background-color: white;" disabled type="text" name="" th:value="${menu.foodName}"></td>
-                            <td><input th:id="'price'+${menu.no}" style="width: 150px;border: none;background-color: white;" disabled type="text" name="" th:value="${#numbers.formatInteger(menu.price, 0, 'COMMA')+'원'}"></td>
-                            <td>
-                                <button th:no="${menu.no}" th:onclick="updateMenu(this.getAttribute('no'))">수정</button>
-                                <button onclick="deleteMenu(this)">삭제</button>
-                            </td>
-                        </tr>
+                        <tbody id="tbody">
+                            <tr th:each="menu:${menu}" th:id="${menu.no}">
+                                <td><img th:id="'img'+${menu.no}" th:src="${menu.img}" style="width: 100px;height: 100px;" alt=""></td>
+                                <td><input th:id="'fn'+${menu.no}" style="width: 150px;border: none;background-color: white;" disabled type="text" name="" th:value="${menu.foodName}"></td>
+                                <td><input th:id="'price'+${menu.no}" style="width: 150px;border: none;background-color: white;" disabled type="text" name="" th:value="${#numbers.formatInteger(menu.price, 0, 'COMMA')+'원'}"></td>
+                                <td>
+                                    <button th:no="${menu.no}" th:onclick="updateMenu(this.getAttribute('no'))">수정</button>
+                                    <button onclick="deleteMenu(this)">삭제</button>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                     <div>
                         <button style="border: none;background: none;cursor: pointer;" onclick="addMenu()"><img src="/img/etc/plus.jpg" style="width: 40px;border: 1px solid;border-radius: 50px;" alt=""></button>
