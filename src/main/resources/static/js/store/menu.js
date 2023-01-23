@@ -94,6 +94,58 @@ function deleteMenu(no){
 }
 
 
+function readImage(input) {
+    // 인풋 태그에 파일이 있는 경우
+    if(input.files && input.files[0]) {
+        // 이미지 파일인지 검사 (생략)
+        // FileReader 인스턴스 생성
+        const reader = new FileReader()
+        // 이미지가 로드가 된 경우
+        reader.onload = e => {
+            const previewImage = document.getElementById("preview-image")
+            previewImage.src = e.target.result
+        }
+        // reader가 이미지 읽도록 하기
+        reader.readAsDataURL(input.files[0])
+    }
+}
+
+var cnt = 0;
+
+
 function addMenu() {
-    console.log(document.getElementById("menuList"))
+    cnt += 1;
+    if(cnt ==1){
+        var htmls = "";
+        htmls += `<tr>`
+        htmls += `<td>`
+        htmls += `<label for="input-image"><img id="preview-image" src="/img/etc/upload.png" style="width: 100px;height: 100px"></label>`
+        htmls += `<input id="input-image" style="display: none" type="file" accept="image/jpeg">`
+        htmls += `</td>`
+        htmls += `<td><input style="width: 150px" type="text" name="foodName"></td>`
+        htmls += `<td><input style="width: 150px" type="text" name="price"></td>`
+        htmls += `<td><form action="uploadMenu"><button onclick="uploadMenu()">추가</button></form>
+                    <button onclick="cancelMenu()">삭제</button>
+                  </td>`
+        htmls += `</tr>`
+        $("#menuList > tbody:last").append(htmls);
+    }else{
+        alert("추가중인 메뉴가 있습니다.")
+        return false;
+    }
+    // input file에 change 이벤트 부여
+    const inputImage = document.getElementById("input-image")
+    inputImage.addEventListener("change", e => {
+        readImage(e.target)
+    })
+}
+
+function uploadMenu() {
+    cnt = 0
+
+}
+
+function cancelMenu() {
+    cnt = 0
+    $("#menuList > tbody:last > tr:last").remove();
 }
