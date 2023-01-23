@@ -113,6 +113,7 @@ body{
     min-height: 700px;
     background: white;
     box-shadow: 5px 5px 5px 5px lightgrey;
+    overflow: auto;
 }
 
 
