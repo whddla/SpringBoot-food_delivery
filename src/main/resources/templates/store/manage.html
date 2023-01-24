@@ -26,21 +26,18 @@
                 <button><a href="/store/menu">메뉴관리</a></button>
                 <button><a href="/store/manage">매장관리</a></button>
             </div>
-            <div style="display: flex;">
-                <div class="update">
-                    <table style="text-align-last: center;">
-                        <thead>
-                            <tr>
-                                <td>메뉴</td>
-                                <td>이름</td>
-                                <td>가격</td>
-                                <td>관리</td>
-                            </tr>
-                        </thead>
-                    </table>
-                    <div>
-                        <button style="border: none;background: none;cursor: pointer;"><img src="/img/etc/plus.jpg" style="width: 40px;border: 1px solid;border-radius: 50px;" alt=""></button>
-                    </div>
+            <div style="display: flex;flex-direction: column">
+                <div>
+                    <button>수정</button>
+                    <button>적용</button>
+                </div>
+                <div>매장 시간 : <input type="time"> 부터 <input type="time"></div>
+                <div>최소 주문 금액 : <input type="text"></div>
+                <div>배달팁 : <input type="text"></div>
+                <div>사장님 알림 : <input type="text"></div>
+                <div>
+                    <button>리뷰 댓글 달러가기</button>
+                    <button>광고 배너 추가하기</button>
                 </div>
             </div>
         </div>
